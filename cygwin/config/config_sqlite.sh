@@ -28,6 +28,8 @@ mkdir -p ./bin ;
 mkdir -p ./lib ;
 cp -f $GLIB_VERSION_SRC/*.h ../include/ ;
 cp -f $GLIB_BUILD_DIR/bin/*.exe ./bin/ ;
-cp -f $GLIB_BUILD_DIR/bin/*.a ./lib/
+cp -f $GLIB_BUILD_DIR/bin/*.a ./lib/ ;
+> ../README.md
+> ../../README.md
 "
 #================================================
