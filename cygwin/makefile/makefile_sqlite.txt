@@ -1,0 +1,29 @@
+GSRC = $(GLIB_VERSION_SRC)
+GBIN = bin
+GBUILD = build
+GTARGET_EXE = $(GBIN)/sqlite3.exe
+GTARGET_LIB = $(GBIN)/libsqlite3.a
+
+GOBJS_EXE = \
+    $(GBUILD)/shell.o \
+    $(GBUILD)/sqlite3.o
+    
+GOBJS_LIB = \
+    $(GBUILD)/sqlite3.o
+    
+all: exe lib
+	
+exe: $(GOBJS_EXE)
+	@mkdir -p $(GBIN)
+	gcc -o $(GTARGET_EXE) $(GOBJS_EXE) -lpthread -ldl
+lib: $(GOBJS_LIB)
+	@mkdir -p $(GBIN)
+	ar rcs $(GTARGET_LIB) $(GOBJS_LIB)
+$(GBUILD)/shell.o: $(GSRC)/shell.c
+	@mkdir -p $(GBUILD)
+	gcc -c $(GSRC)/shell.c -o $(GBUILD)/shell.o
+$(GBUILD)/sqlite3.o: $(GSRC)/sqlite3.c
+	@mkdir -p $(GBUILD)
+	gcc -c $(GSRC)/sqlite3.c -o $(GBUILD)/sqlite3.o
+clean:
+	rm -f $(GBUILD)/*.o $(GBIN)/*.exe $(GBIN)/*.a
