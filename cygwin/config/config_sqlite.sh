@@ -18,3 +18,16 @@ cp -f $GLIB_MAKEFILE_PATH Makefile ;
 make
 "
 #================================================
+GLIB_BUILD_MAKE="
+make
+"
+#================================================
+GLIB_DEV_INSTALL="
+mkdir -p ../include ;
+mkdir -p ./bin ;
+mkdir -p ./lib ;
+cp -f $GLIB_VERSION_SRC/*.h ../include/ ;
+cp -f $GLIB_BUILD_DIR/bin/*.exe ./bin/ ;
+cp -f $GLIB_BUILD_DIR/bin/*.a ./lib/
+"
+#================================================
