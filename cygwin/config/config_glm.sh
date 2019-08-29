@@ -1,7 +1,7 @@
 #================================================
-GLIB_VERSION="2.4.13.6"
-GLIB_LINK=https://github.com/opencv/opencv/archive/2.4.13.6.zip
-GLIB_ARCHIVE_NAME=opencv-2.4.13.6
+GLIB_VERSION="0.9.9.5"
+GLIB_LINK=https://github.com/g-truc/glm/releases/download/0.9.9.5/glm-0.9.9.5.zip
+GLIB_ARCHIVE_NAME=glm-0.9.9.5
 #================================================
 GLIB_VERSION_NAME=$GLIB_NAME-$GLIB_VERSION
 GLIB_VERSION_ARCHIVE=$GLIB_NAME-$GLIB_VERSION.zip
@@ -10,7 +10,7 @@ export "GLIB_VERSION_SRC=$GLIB_BUILD_SRC/$GLIB_VERSION_NAME"
 GLIB_LINK_DOWNLOAD="
 wget $GLIB_LINK -O $GLIB_VERSION_ARCHIVE ;
 unzip $GLIB_VERSION_ARCHIVE ;
-mv $GLIB_ARCHIVE_NAME $GLIB_VERSION_NAME ;
+mv $GLIB_ARCHIVE_NAME $GLIB_VERSION_NAME
 "
 #================================================
 GLIB_BUILD_RUN="

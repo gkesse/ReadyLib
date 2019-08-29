@@ -1,7 +1,7 @@
 #================================================
-GLIB_VERSION="2.4.13.6"
-GLIB_LINK=https://github.com/opencv/opencv/archive/2.4.13.6.zip
-GLIB_ARCHIVE_NAME=opencv-2.4.13.6
+set GLIB_VERSION="3.3"
+set GLIB_LINK=https://github.com/glfw/glfw/releases/download/3.3/glfw-3.3.zip
+set GLIB_ARCHIVE_NAME=glfw-3.3
 #================================================
 GLIB_VERSION_NAME=$GLIB_NAME-$GLIB_VERSION
 GLIB_VERSION_ARCHIVE=$GLIB_NAME-$GLIB_VERSION.zip

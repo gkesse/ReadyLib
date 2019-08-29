@@ -3,10 +3,17 @@ GLIB_ARCH=cygwin
 if [ "$GLONG_BIT" = "64" ] ; then
     GLIB_ARCH=cygwin64
 fi
-echo $GLONG_BIT
 #================================================
-GLIB_ROOT=/cygdrive/c/lib
-GREADYLIB_ROOT=/cygdrive/c/Users/Admin/Downloads/Programs/ReadyLib
+GLIB_ROOT_WIN="C:\lib"
+GREADYLIB_ROOT_WIN="C:\Users\Admin\Downloads\Programs\ReadyLib"
+GCMAKE_ROOT_WIN="C:\Program Files\CMake\bin"
+GMINGW_ROOT_WIN="C:\MinGW\bin"
+#================================================
+GLIB_ROOT=$(cygpath -u $GLIB_ROOT_WIN)
+GREADYLIB_ROOT=$(cygpath -u $GREADYLIB_ROOT_WIN)
+GCMAKE_ROOT=$(cygpath -u $GCMAKE_ROOT_WIN)
+GMINGW_ROOT=$(cygpath -u $GMINGW_ROOT_WIN)
+#================================================
 GLIB_BUILD=$GLIB_ROOT/build
 GLIB_DEV=$GREADYLIB_ROOT/dev
 #================================================
@@ -82,5 +89,6 @@ function GLib_Generate() {
 }
 #================================================
 GLib_Create
-GLib_Generate "sdl"
+#GLib_Generate "sdl"
+$(cygpath -u "\"C:\Program Files\CMake\bin\cmake.exe\"") -G
 #================================================

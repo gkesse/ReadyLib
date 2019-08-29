@@ -1,7 +1,7 @@
 #================================================
-GLIB_VERSION="2.4.13.6"
-GLIB_LINK=https://github.com/opencv/opencv/archive/2.4.13.6.zip
-GLIB_ARCHIVE_NAME=opencv-2.4.13.6
+GLIB_VERSION="0.8.2.0"
+GLIB_LINK=https://github.com/g-truc/gli/releases/download/0.8.2.0/gli-0.8.2.0.zip
+GLIB_ARCHIVE_NAME=gli-0.8.2.0
 #================================================
 GLIB_VERSION_NAME=$GLIB_NAME-$GLIB_VERSION
 GLIB_VERSION_ARCHIVE=$GLIB_NAME-$GLIB_VERSION.zip
@@ -10,13 +10,13 @@ export "GLIB_VERSION_SRC=$GLIB_BUILD_SRC/$GLIB_VERSION_NAME"
 GLIB_LINK_DOWNLOAD="
 wget $GLIB_LINK -O $GLIB_VERSION_ARCHIVE ;
 unzip $GLIB_VERSION_ARCHIVE ;
-mv $GLIB_ARCHIVE_NAME $GLIB_VERSION_NAME ;
+mv $GLIB_ARCHIVE_NAME $GLIB_VERSION_NAME
 "
 #================================================
 GLIB_BUILD_RUN="
-cmake -G \"MSYS Makefiles\" \
+cmake -G \"Unix Makefiles\" \
 -DCMAKE_INSTALL_PREFIX=$GLIB_BUILD_PREFIX \
-$GLIB_VERSION_SRC
+$(cygpath -w $GLIB_VERSION_SRC)
 "
 #================================================
 GLIB_BUILD_MAKE="
