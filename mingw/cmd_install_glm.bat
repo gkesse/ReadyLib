@@ -21,7 +21,8 @@ set "GLIB_ARCHIVE_NAME=glm"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_NAME%"
 ::===============================================
 ::call :GLib_Download
-call :GLib_Build
+::call :GLib_Build
+call :GLib_Make
 goto :eof
 ::===============================================
 :GLib_Download
@@ -37,19 +38,19 @@ goto :eof
     echo [ INFO ] Generation de la librairie...[ %GLIB_NAME% ]
     if not exist %GLIB_BUILD_DIR% ( mkdir %GLIB_BUILD_DIR% )
     cd %GLIB_BUILD_DIR%
-    cmake -G \"Mingw Makefiles\" ^
+    cmake -G "MinGW Makefiles" ^
     -DCMAKE_INSTALL_PREFIX=%GLIB_BUILD_PREFIX% ^
     %GLIB_SOURCE_DIR%
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
 :GLib_Make
+    cd %GLIB_BUILD_DIR%
     mingw32-make
     mingw32-make install
 goto :eof
 ::===============================================
-:GL
-set "GLIB_DEV_INSTALL=
+:GLib_Install
 mkdir ../include ;
 mkdir ./lib ;
 > ./README.md ;
@@ -61,5 +62,5 @@ cp -rf %GLIB_BUILD_PREFIX/lib ./lib ;
 elif [ -d %GLIB_BUILD_PREFIX/lib64 ] ; then \
 cp -rf %GLIB_BUILD_PREFIX/lib64 ./lib ; 
 fi
-"
+goto :eof
 ::===============================================
