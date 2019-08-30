@@ -1,8 +1,9 @@
-GSRC = $(GLIB_VERSION_SRC)
+GSRC = $(GLIB_SOURCE_DIR)
 GBIN = bin
+GLIB = lib
 GBUILD = build
 GTARGET_EXE = $(GBIN)/sqlite3.exe
-GTARGET_LIB = $(GBIN)/libsqlite3.a
+GTARGET_LIB = $(GLIB)/libsqlite3.a
 
 GOBJS_EXE = \
     $(GBUILD)/shell.o \
@@ -14,16 +15,16 @@ GOBJS_LIB = \
 all: exe lib
 	
 exe: $(GOBJS_EXE)
-	@mkdir -p $(GBIN)
-	gcc -o $(GTARGET_EXE) $(GOBJS_EXE) -lpthread -ldl
+	@if not exist "$(GBIN)" @mkdir $(GBIN)
+	gcc -o $(GTARGET_EXE) $(GOBJS_EXE)
 lib: $(GOBJS_LIB)
-	@mkdir -p $(GBIN)
+	@if not exist "$(GLIB)" @mkdir $(GLIB)
 	ar rcs $(GTARGET_LIB) $(GOBJS_LIB)
 $(GBUILD)/shell.o: $(GSRC)/shell.c
-	@mkdir -p $(GBUILD)
+	@if not exist "$(GBUILD)" @mkdir $(GBUILD)
 	gcc -c $(GSRC)/shell.c -o $(GBUILD)/shell.o
 $(GBUILD)/sqlite3.o: $(GSRC)/sqlite3.c
-	@mkdir -p $(GBUILD)
+	@if not exist "$(GBUILD)" @mkdir $(GBUILD)
 	gcc -c $(GSRC)/sqlite3.c -o $(GBUILD)/sqlite3.o
 clean:
-	rm -f $(GBUILD)/*.o $(GBIN)/*.exe $(GBIN)/*.a
+	del /q $(GBUILD)\*.o $(GBIN)\*.exe $(GBIN)\*.a

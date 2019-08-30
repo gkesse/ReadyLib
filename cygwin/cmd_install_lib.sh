@@ -11,7 +11,7 @@ GLIB_BUILD=$GLIB_ROOT/build
 GLIB_DEV=$GREADYLIB_ROOT/dev
 #================================================
 GLIB_SCRIPT_ROOT=$PWD
-GLIB_CONFIG_ROOT=$GLIB_SCRIPT_ROOT/config
+GLIB_CONFIG_ROOT=$GLIB_SCRIPT_ROOT/configOOOOOOOOOOOOOOOO
 GLIB_MAKEFILE_ROOT=$GLIB_SCRIPT_ROOT/makefile
 #================================================
 function GLib_Create() {

@@ -31,8 +31,8 @@ goto :eof
     echo [ INFO ] Telechargement de la librairie...[ %GLIB_NAME% ]
     if not exist %GLIB_BUILD_SRC% ( mkdir %GLIB_BUILD_SRC% )
     cd %GLIB_BUILD_SRC%
-    %GCYGWIN%\wget %GLIB_LINK%
-    %GCYGWIN%\unzip %GLIB_ARCHIVE_NAME%
+    if not exist "%GLIB_ARCHIVE_NAME%.zip" ( %GCYGWIN%\wget %GLIB_LINK% )
+    if not exist "%GLIB_ARCHIVE_NAME%" ( %GCYGWIN%\unzip %GLIB_ARCHIVE_NAME% )
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
@@ -75,7 +75,7 @@ set "GLIB_ARCH=mingw"
 goto :eof
 ::===============================================
 :GLib_Generate
-    ::call :GLib_Download
+    call :GLib_Download
     call :GLib_Build
     call :GLib_Make
     call :GLib_Install
