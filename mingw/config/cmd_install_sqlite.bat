@@ -72,7 +72,7 @@ goto :eof
 goto :eof
 ::===============================================
 :GLib_Arch
-set "GLIB_ARCH=mingw"
+    set "GLIB_ARCH=mingw"
     if exist "%PROGRAMFILES(X86)%" ( set "GLIB_ARCH=mingw64" )
 goto :eof
 ::===============================================
