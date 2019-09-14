@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 #================================================
 GLib_Generate() {
     for lFile in ./*.sh ; do
