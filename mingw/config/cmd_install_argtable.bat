@@ -5,10 +5,11 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=argtable"
+set "GLIB_VERSION=3.4.7"
+set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
 set "GLIB_DEV=C:\Users\Admin\Downloads\Programs\ReadyLib\dev"
-set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_SCRIPT_ROOT=%cd%"
 ::===============================================
@@ -19,7 +20,7 @@ set "GLIB_BUILD_SRC=%GLIB_BUILD_NAME%\source"
 set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build"
 set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
-set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_ARCH%"
+set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
 set "GLIB_MAKEFILE_PATH=%GLIB_SCRIPT_ROOT%\makefile\%GLIB_NAME%\Makefile
 ::===============================================
 set "GLIB_LINK=https://github.com/argtable/argtable3/releases/download/v3.1.2.bb37058/argtable-3.1.2-amalgamation.zip"
