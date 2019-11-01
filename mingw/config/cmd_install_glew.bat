@@ -62,7 +62,7 @@ goto :eof
     if not exist "..\include" ( mkdir "..\include" )
     if not exist ".\lib" ( mkdir ".\lib" )
     if not exist ".\bin" ( mkdir ".\bin" )
-    echo. > ./README.md
+    echo. > ./README.md 
     echo. > ../README.md
     echo. > ../../README.md
     echo. > ../../../README.md
