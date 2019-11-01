@@ -5,10 +5,11 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=glew"
+set "GLIB_VERSION=2.1.0"
+set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
 set "GLIB_DEV=C:\Users\Admin\Downloads\Programs\ReadyLib\dev"
-set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_SCRIPT_ROOT=%cd%"
 ::===============================================
@@ -19,7 +20,7 @@ set "GLIB_BUILD_SRC=%GLIB_BUILD_NAME%\source"
 set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build"
 set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
-set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_ARCH%"
+set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
 set "GLIB_MAKEFILE_PATH=%GLIB_SCRIPT_ROOT%\makefile\%GLIB_NAME%\Makefile
 ::===============================================
 set "GLIB_LINK=https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.zip"
@@ -67,6 +68,7 @@ goto :eof
     echo. > ../../../README.md
     if exist "%GLIB_BUILD_DIR%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\include" "..\include" )
     if exist "%GLIB_BUILD_DIR%\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\lib" ".\lib" )
+    if exist "%GLIB_BUILD_DIR%\bin" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\bin" ".\bin" )
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
