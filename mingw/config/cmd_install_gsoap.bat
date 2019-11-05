@@ -5,7 +5,7 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=gsoap"
-set "GLIB_VERSION=3.4.7"
+set "GLIB_VERSION=2.8.94"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
@@ -22,9 +22,9 @@ set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
 set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
 ::===============================================
-set "GLIB_LINK=https://github.com/opencv/opencv/archive/3.4.7.zip"
-set "GLIB_ARCHIVE_NAME=3.4.7.zip"
-set "GLIB_ARCHIVE_SRC=OpenCV-MinGW-Build-OpenCV-3.4.7"
+set "GLIB_LINK=https://sourceforge.net/projects/gsoap2/files/gsoap-2.8/gsoap_2.8.94.zip"
+set "GLIB_ARCHIVE_NAME=gsoap_2.8.94.zip"
+set "GLIB_ARCHIVE_SRC=gsoap-2.8"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_SRC%"
 ::===============================================
 call :GLib_Generate
@@ -43,9 +43,7 @@ goto :eof
     echo [ INFO ] Generation de la librairie...[ %GLIB_NAME% ]
     if not exist %GLIB_BUILD_DIR% ( mkdir %GLIB_BUILD_DIR% )
     cd %GLIB_BUILD_DIR%
-    cmake -G "MinGW Makefiles" ^
-    -DCMAKE_INSTALL_PREFIX=%GLIB_BUILD_PREFIX% ^
-    %GLIB_SOURCE_DIR%
+    ./configure --help
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================

@@ -5,7 +5,7 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=glm"
-set "GLIB_VERSION=3.4.7"
+set "GLIB_VERSION=0.9.9.6"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
@@ -22,9 +22,9 @@ set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
 set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
 ::===============================================
-set "GLIB_LINK=https://github.com/g-truc/glm/releases/download/0.9.9.5/glm-0.9.9.5.zip"
-set "GLIB_ARCHIVE_NAME=glm-0.9.9.5.zip"
-set "GLIB_ARCHIVE_SRC=glm-0.9.9.5"
+set "GLIB_LINK=https://github.com/g-truc/glm/releases/download/0.9.9.6/glm-0.9.9.6.zip"
+set "GLIB_ARCHIVE_NAME=glm-0.9.9.6.zip"
+set "GLIB_ARCHIVE_SRC=glm"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_SRC%"
 ::===============================================
 call :GLib_Generate

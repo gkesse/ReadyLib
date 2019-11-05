@@ -5,7 +5,7 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=glfw"
-set "GLIB_VERSION=3.3.0"
+set "GLIB_VERSION=3.3"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"

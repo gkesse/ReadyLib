@@ -5,7 +5,7 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=argtable"
-set "GLIB_VERSION=3.4.7"
+set "GLIB_VERSION=3.1.2"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
