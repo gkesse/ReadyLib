@@ -5,8 +5,8 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=glm"
-set "GLIB_VERSION=0.6.0"
-set "GLIB_COMPILER=c"
+set "GLIB_VERSION=0.9.9.6"
+set "GLIB_COMPILER=cpp"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
 set "GLIB_DEV=C:\Users\Admin\Downloads\Programs\ReadyLib\dev"
@@ -18,14 +18,13 @@ call :GLib_Arch
 set "GLIB_BUILD_NAME=%GLIB_BUILD%\%GLIB_NAME%"
 set "GLIB_BUILD_SRC=%GLIB_BUILD_NAME%\source"
 set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build\%GLIB_COMPILER%"
-set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
+set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install\%GLIB_COMPILER%"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
 set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
-set "GLIB_MAKEFILE_PATH=%GLIB_SCRIPT_ROOT%\makefile\%GLIB_NAME%\%GLIB_COMPILER%\Makefile
 ::===============================================
-set "GLIB_LINK=https://github.com/recp/cglm/archive/v0.6.0.zip"
-set "GLIB_ARCHIVE_NAME=v0.6.0.zip"
-set "GLIB_ARCHIVE_SRC=cglm-0.6.0"
+set "GLIB_LINK=https://github.com/g-truc/glm/releases/download/0.9.9.6/glm-0.9.9.6.zip"
+set "GLIB_ARCHIVE_NAME=glm-0.9.9.6.zip"
+set "GLIB_ARCHIVE_SRC=glm"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_SRC%"
 ::===============================================
 call :GLib_Generate
@@ -44,7 +43,9 @@ goto :eof
     echo [ INFO ] Generation de la librairie...[ %GLIB_NAME% ]
     if not exist %GLIB_BUILD_DIR% ( mkdir %GLIB_BUILD_DIR% )
     cd %GLIB_BUILD_DIR%
-    xcopy /q /s /i /y "%GLIB_MAKEFILE_PATH%" ".\"
+    cmake -G "MinGW Makefiles" ^
+    -DCMAKE_INSTALL_PREFIX=%GLIB_BUILD_PREFIX% ^
+    %GLIB_SOURCE_DIR%
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
@@ -52,6 +53,7 @@ goto :eof
     echo [ INFO ] Construction de la librairie...[ %GLIB_NAME% ]
     cd %GLIB_BUILD_DIR%
     mingw32-make
+    mingw32-make install
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
@@ -66,9 +68,9 @@ goto :eof
     echo. > ../README.md
     echo. > ../../README.md
     echo. > ../../../README.md
-    if exist "%GLIB_BUILD_DIR%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\include" "..\include" )
-    if exist "%GLIB_BUILD_DIR%\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\lib" ".\lib" )
-    if exist "%GLIB_BUILD_DIR%\bin" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\bin" ".\bin" )
+    if exist "%GLIB_BUILD_PREFIX%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\include" "..\include" )
+    if exist "%GLIB_BUILD_PREFIX%\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\lib" ".\lib" )
+    if exist "%GLIB_BUILD_PREFIX%\lib64" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\lib64" ".\lib" )
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
