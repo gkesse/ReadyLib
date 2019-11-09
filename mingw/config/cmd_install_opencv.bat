@@ -5,7 +5,7 @@ set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
 set "GLIB_NAME=opencv"
-set "GLIB_VERSION=3.4.7"
+set "GLIB_VERSION=2.4.13.6"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
@@ -16,15 +16,15 @@ set "GLIB_SCRIPT_ROOT=%cd%"
 call :GLib_Arch
 ::===============================================
 set "GLIB_BUILD_NAME=%GLIB_BUILD%\%GLIB_NAME%"
-set "GLIB_BUILD_SRC=%GLIB_BUILD_NAME%\source"
-set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build"
-set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install"
+set "GLIB_BUILD_SRC=%GLIB_BUILD_NAME%\source\%GLIB_COMPILER%"
+set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build\%GLIB_COMPILER%"
+set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install\%GLIB_COMPILER%"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
 set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
 ::===============================================
-set "GLIB_LINK=https://github.com/huihut/OpenCV-MinGW-Build/archive/OpenCV-3.4.7.zip"
-set "GLIB_ARCHIVE_NAME=OpenCV-3.4.7.zip"
-set "GLIB_ARCHIVE_SRC=OpenCV-MinGW-Build-OpenCV-3.4.7"
+set "GLIB_LINK=https://github.com/opencv/opencv/archive/2.4.13.6.zip"
+set "GLIB_ARCHIVE_NAME=2.4.13.6.zip"
+set "GLIB_ARCHIVE_SRC=opencv-2.4.13.6"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_SRC%"
 set "GLIB_SOURCE_BIN=%GLIB_SOURCE_DIR%\x86\mingw"
 ::===============================================
@@ -42,10 +42,20 @@ goto :eof
 ::===============================================
 :GLib_Build
     echo [ INFO ] Generation de la librairie...[ %GLIB_NAME% ]
+    if not exist %GLIB_BUILD_DIR% ( mkdir %GLIB_BUILD_DIR% )
+    cd %GLIB_BUILD_DIR%
+    cmake -G "MinGW Makefiles" ^
+    -DCMAKE_INSTALL_PREFIX=%GLIB_BUILD_PREFIX% ^
+    %GLIB_SOURCE_DIR%
+    cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
 :GLib_Make
     echo [ INFO ] Construction de la librairie...[ %GLIB_NAME% ]
+    cd %GLIB_BUILD_DIR%
+    mingw32-make
+    mingw32-make install
+    cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
 :GLib_Install
@@ -59,9 +69,11 @@ goto :eof
     echo. > ../README.md
     echo. > ../../README.md
     echo. > ../../../README.md
-    if exist "%GLIB_SOURCE_DIR%\include" ( xcopy /q /s /i /y "%GLIB_SOURCE_DIR%\include" "..\include" )
-    if exist "%GLIB_SOURCE_BIN%\lib" ( xcopy /q /s /i /y "%GLIB_SOURCE_BIN%\lib" ".\lib" )
-    if exist "%GLIB_SOURCE_BIN%\bin" ( xcopy /q /s /i /y "%GLIB_SOURCE_BIN%\bin" ".\bin" )
+    if exist "%GLIB_BUILD_PREFIX%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\include" "..\include" )
+    if exist "%GLIB_BUILD_PREFIX%\x86\mingw\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\x86\mingw\lib" ".\lib" )
+    if exist "%GLIB_BUILD_PREFIX%\x64\mingw\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\x64\mingw\lib" ".\lib" )
+    if exist "%GLIB_BUILD_PREFIX%\x86\mingw\bin" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\x86\mingw\bin" ".\bin" )
+    if exist "%GLIB_BUILD_PREFIX%\x64\mingw\bin" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\x64\mingw\bin" ".\bin" )
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
