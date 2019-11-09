@@ -4,8 +4,8 @@ set PATH=C:\MinGW\bin;%PATH%
 set PATH=C:\Program Files\CMake\bin;%PATH%
 set "GCYGWIN=C:\cygwin64\bin"
 ::===============================================
-set "GLIB_NAME=sdl"
-set "GLIB_VERSION=2.0.10"
+set "GLIB_NAME=cmocka"
+set "GLIB_VERSION=1.1.0"
 set "GLIB_COMPILER=c"
 ::===============================================
 set "GLIB_BUILD=C:\lib\build"
@@ -21,11 +21,13 @@ set "GLIB_BUILD_DIR=%GLIB_BUILD_NAME%\build\%GLIB_COMPILER%"
 set "GLIB_BUILD_PREFIX=%GLIB_BUILD_NAME%\install\%GLIB_COMPILER%"
 set "GLIB_DEV_NAME=%GLIB_DEV%\%GLIB_NAME%"
 set "GLIB_DEV_DIR=%GLIB_DEV_NAME%\%GLIB_COMPILER%\%GLIB_VERSION%\%GLIB_ARCH%"
+set "GLIB_MAKEFILE_PATH=%GLIB_SCRIPT_ROOT%\makefile\%GLIB_NAME%\Makefile
 ::===============================================
-set "GLIB_LINK=https://www.libsdl.org/release/SDL2-2.0.10.zip"
-set "GLIB_ARCHIVE_NAME=SDL2-2.0.10.zip"
-set "GLIB_ARCHIVE_SRC=SDL2-2.0.10"
+set "GLIB_LINK=https://cmocka.org/files/1.1/cmocka-1.1.0-mingw.zip"
+set "GLIB_ARCHIVE_NAME=cmocka-1.1.0-mingw.zip"
+set "GLIB_ARCHIVE_SRC=cmocka-1.1.0"
 set "GLIB_SOURCE_DIR=%GLIB_BUILD_SRC%\%GLIB_ARCHIVE_SRC%"
+set "GLIB_BUILD_DIR=%GLIB_SOURCE_DIR%"
 ::===============================================
 call :GLib_Generate
 goto :eof
@@ -41,20 +43,10 @@ goto :eof
 ::===============================================
 :GLib_Build
     echo [ INFO ] Generation de la librairie...[ %GLIB_NAME% ]
-    if not exist %GLIB_BUILD_DIR% ( mkdir %GLIB_BUILD_DIR% )
-    cd %GLIB_BUILD_DIR%
-    cmake -G "MinGW Makefiles" ^
-    -DCMAKE_INSTALL_PREFIX=%GLIB_BUILD_PREFIX% ^
-    %GLIB_SOURCE_DIR%
-    cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
 :GLib_Make
     echo [ INFO ] Construction de la librairie...[ %GLIB_NAME% ]
-    cd %GLIB_BUILD_DIR%
-    mingw32-make
-    mingw32-make install
-    cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
 :GLib_Install
@@ -64,13 +56,13 @@ goto :eof
     if not exist "..\include" ( mkdir "..\include" )
     if not exist ".\lib" ( mkdir ".\lib" )
     if not exist ".\bin" ( mkdir ".\bin" )
-    echo. > ./README.md
+    echo. > ./README.md 
     echo. > ../README.md
     echo. > ../../README.md
     echo. > ../../../README.md
-    if exist "%GLIB_BUILD_PREFIX%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\include" "..\include" )
-    if exist "%GLIB_BUILD_PREFIX%\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\lib" ".\lib" )
-    if exist "%GLIB_BUILD_PREFIX%\lib64" ( xcopy /q /s /i /y "%GLIB_BUILD_PREFIX%\lib64" ".\lib" )
+    if exist "%GLIB_BUILD_DIR%\include" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\include" "..\include" )
+    if exist "%GLIB_BUILD_DIR%\lib" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\lib" ".\lib" )
+    if exist "%GLIB_BUILD_DIR%\bin" ( xcopy /q /s /i /y "%GLIB_BUILD_DIR%\bin" ".\bin" )
     cd %GLIB_SCRIPT_ROOT%
 goto :eof
 ::===============================================
