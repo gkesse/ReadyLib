@@ -3,7 +3,7 @@ GBIN = bin
 GLIB = lib
 GBUILD = build
 GINCLUDE = include
-GTARGET_LIB_STATIC = $(GLIB)/libcgml.a
+GTARGET_LIB_STATIC = $(GLIB)/libglm.a
 GTARGET_LIB_SHARED = 
     
 GINCS = \

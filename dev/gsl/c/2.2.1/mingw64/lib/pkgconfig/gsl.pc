@@ -1,0 +1,11 @@
+prefix=/home/Mesh/gsl_mingw/package
+exec_prefix=/home/Mesh/gsl_mingw/package
+libdir=/home/Mesh/gsl_mingw/package/lib
+includedir=/home/Mesh/gsl_mingw/package/include
+GSL_CBLAS_LIB=-lgslcblas
+
+Name: GSL
+Description: GNU Scientific Library
+Version: 2.2.1
+Libs: -L/home/Mesh/gsl_mingw/package/lib -lgsl ${GSL_CBLAS_LIB} -lm -lm 
+Cflags: -I/home/Mesh/gsl_mingw/package/include
