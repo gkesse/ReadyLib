@@ -1,16 +1,16 @@
 #================================================
 SHELL: /bin/bash  
-#================================================    
+#================================================	
 # package
 pkg_install:
 	sudo apt -y install \
-    kernel-package \
+	kernel-package \
 	libncurses5-dev \
-    flex \
-    bison \
-    libssl-dev \
-    git
-#================================================    
+	flex \
+	bison \
+	libssl-dev \
+	git
+#================================================	
 # xenomai
 xen_all: pkg_install xen_download linux_download xen_patch xen_config
 
@@ -21,18 +21,18 @@ xen_download:
 	@if [ -f $(GXENOMAI_ARCHIVE) ] ; then cd $(GXENOMAI_ROOT) && rm -f $(GXENOMAI_ARCHIVE) ; fi
 xen_patch:
 	@cd $(GXENOMAI_NAME) && $(GXENOMAI_PREPARE) \
-    --linux=$(GLINUX_NAME) \
-    --arch=$(GXENOMAI_ARCH) \
-    --ipipe=$(GXENOMAI_IPIPE)
+	--linux=$(GLINUX_NAME) \
+	--arch=$(GXENOMAI_ARCH) \
+	--ipipe=$(GXENOMAI_IPIPE)
 xen_config:
 	@cd $(GLINUX_NAME) && make menuconfig
 xen_cpuinfo:
 	@cd $(GLINUX_NAME) && cat /proc/cpuinfo | grep -i family
 xen_compile:
 	@CONCURRENCY_LEVEL=$(nproc) make-kpkg \
-    --rootcmd fakeroot \
-    --initrd kernel_image kernel_headers
-#================================================    
+	--rootcmd fakeroot \
+	--initrd kernel_image kernel_headers
+#================================================	
 # linux_kernel
 linux_download:
 	@if ! [ -d $(GLINUX_ROOT) ] ; then mkdir -p $(GLINUX_ROOT) ; fi
@@ -51,7 +51,7 @@ linux_install_module:
 	@cd $(GLINUX_NAME) && sudo make modules_install
 linux_install_kernel:
 	@cd $(GLINUX_NAME) && sudo make install
-#================================================    
+#================================================	
 # unix
 unix_version:
 	@cat /proc/version
@@ -59,7 +59,7 @@ unix_kernel_version:
 	@uname -mr
 unix_kernel_list:
 	@cmd/unix_kernel_list
-#================================================    
+#================================================	
 # git
 git_push:
 	@cd $(GPROJECT_PATH) && git pull && git add --all && git commit -m "Initial Commit" && git push -u origin master
@@ -76,4 +76,4 @@ git_config:
 	@git config --list
 git_store:
 	@git config --global credential.helper store
-#================================================    
+#================================================	
