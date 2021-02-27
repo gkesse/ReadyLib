@@ -63,6 +63,10 @@ unix_kernel_list:
 # git
 git_push:
 	@cd $(GPROJECT_PATH) && git pull && git add --all && git commit -m "Initial Commit" && git push -u origin master
+git_push_o:
+	@cd $(GPROJECT_PATH) && git add --all && git commit -m "Initial Commit" && git push -u origin master
+git_push_s:
+	@cd $(GPROJECT_PATH) && git push -u origin master
 git_clone:
 	@cd $(GPROJECT_ROOT) && git clone $(GGIT_URL) $(GGIT_NAME) 
 git_config:
@@ -70,4 +74,6 @@ git_config:
 	@git config --global user.email "$(GGIT_EMAIL)"
 	@git config --global core.editor "$(GGIT_EDITOR)"
 	@git config --list
+git_store:
+	@git config --global credential.helper store
 #================================================    
