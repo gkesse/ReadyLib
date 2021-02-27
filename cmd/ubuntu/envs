@@ -1,0 +1,32 @@
+#================================================
+# project
+export "GPROJECT_ROOT=/home/osboxes/Programs"
+export "GPROJECT_PATH=$GPROJECT_ROOT/ReadyLib"
+#================================================
+# readylib
+export "GRLIB_ROOT=$GPROJECT_ROOT/ReadyLib/dev"
+if ! [ -d $GRLIB_ROOT ] ; then mkdir -p $GRLIB_ROOT ; fi
+#================================================
+# xenomai
+export "GXENOMAI_ROOT=$GRLIB_ROOT/xenomai"
+export "GXENOMAI_ARCHIVE=$GXENOMAI_ROOT/xenomai-2.6.5.tar.bz2"
+export "GXENOMAI_NAME=$GXENOMAI_ROOT/xenomai-2.6.5"
+export "GXENOMAI_PREPARE=$GXENOMAI_NAME/scripts/prepare-kernel.sh"
+export "GXENOMAI_ARCH=i686"
+export "GXENOMAI_IPIPE=ksrc/arch/x86/patches/ipipe-core-3.18.20-x86-7.patch"
+export "GXENOMAI_URL=http://xenomai.org/downloads/xenomai/stable/xenomai-2.6.5.tar.bz2"
+#================================================
+# linux_kernel
+export "GLINUX_ROOT=$GRLIB_ROOT/linux"
+export "GLINUX_ARCHIVE=$GLINUX_ROOT/linux-5.9.tar.gz"
+export "GLINUX_NAME=$GLINUX_ROOT/linux-5.9"
+export "GLINUX_CONFIG=$GLINUX_NAME/.config"
+export "GLINUX_URL=https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.9.tar.gz"
+#================================================
+# git
+export "GGIT_URL=https://github.com/gkesse/ReadyLib.git"
+export "GGIT_NAME=ReadyLib_2"
+export "GGIT_USER=Gerard KESSE"
+export "GGIT_EMAIL=tiakagerard@hotmail.com"
+export "GGIT_EDITOR=nano"
+#================================================

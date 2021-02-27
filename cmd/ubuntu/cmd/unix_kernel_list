@@ -1,0 +1,1 @@
+dpkg -l | awk '!/^rc/ && / linux-(c|g|h|i|lo|m|si|t)/{print $1,$2,$3,$4 | "sort -k3 | column -t"}'
