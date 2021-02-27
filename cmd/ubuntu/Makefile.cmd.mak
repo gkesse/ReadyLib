@@ -52,14 +52,6 @@ linux_install_module:
 linux_install_kernel:
 	@cd $(GLINUX_NAME) && sudo make install
 #================================================	
-# unix
-unix_version:
-	@cat /proc/version
-unix_kernel_version:
-	@uname -mr
-unix_kernel_list:
-	@cmd/unix_kernel_list
-#================================================	
 # git
 git_push:
 	@cd $(GPROJECT_PATH) && git pull && git add --all && git commit -m "Initial Commit" && git push -u origin master
@@ -76,4 +68,14 @@ git_config:
 	@git config --list
 git_store:
 	@git config --global credential.helper store
+#================================================	
+# unix
+unix_reboot:
+	@sudo shutdow -r now
+unix_version:
+	@cat /proc/version
+unix_kernel_version:
+	@uname -mr
+unix_kernel_list:
+	@cmd/unix_kernel_list
 #================================================	
