@@ -25,6 +25,7 @@ export "GLINUX_URL=https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5
 #================================================
 # ptxdist
 export "GPTXDIST_ROOT=$GRLIB_ROOT/ptxdist"
+export "GPTXDIST_SRC=$GRLIB_ROOT/ptxdist_src"
 export "GPTXDIST_ARCHIVE=$GPTXDIST_ROOT/ptxdist-2021.02.0.tar.bz2"
 export "GPTXDIST_NAME=$GPTXDIST_ROOT/ptxdist-2021.02.0"
 export "GPTXDIST_URL=https://public.pengutronix.de/software/ptxdist/ptxdist-2021.02.0.tar.bz2"

@@ -4,12 +4,16 @@ SHELL: /bin/bash
 # package
 pkg_install:
 	sudo apt -y install \
-	kernel-package \
 	libncurses5-dev \
+	libncursesw5-dev \
 	flex \
 	bison \
 	libssl-dev \
-	git
+	git \
+	gawk \
+	texinfo \
+	python-docutils \
+	python-sphinx
 #================================================	
 # xenomai
 xen_all: pkg_install xen_download linux_download xen_patch xen_config
@@ -39,6 +43,16 @@ ptxdist_download:
 	@if ! [ -d $(GPTXDIST_NAME) ] ; then cd $(GPTXDIST_ROOT) && wget $(GPTXDIST_URL) ; fi
 	@if ! [ -d $(GPTXDIST_NAME) ] ; then cd $(GPTXDIST_ROOT) && tar xjfv $(GPTXDIST_ARCHIVE) ; fi
 	@if [ -f $(GPTXDIST_ARCHIVE) ] ; then cd $(GPTXDIST_ROOT) && rm -f $(GPTXDIST_ARCHIVE) ; fi
+ptxdist_config:
+	@cd $(GPTXDIST_NAME) && ./configure
+ptxdist_build:
+	@cd $(GPTXDIST_NAME) && make
+ptxdist_install:
+	@cd $(GPTXDIST_NAME) && make install
+ptxdist_remove:
+	@rm -rf $(GPTXDIST_NAME)
+ptxdist_setup:
+	@ptxdist setup
 #================================================	
 # linux_kernel
 linux_download:
