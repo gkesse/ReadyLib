@@ -1,0 +1,9 @@
+## SECTION=python3
+
+config PYTHON3_PEXPECT
+	tristate
+	select PYTHON3
+	select PYTHON3_PTYPROCESS	if RUNTIME
+	prompt "pexpect"
+	help
+	  Pexpect allows easy control of interactive console applications.

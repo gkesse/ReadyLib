@@ -1,0 +1,934 @@
+## SECTION=multimedia_gstreamer1
+
+menuconfig GST_PLUGINS_BAD1
+	tristate
+	select HOST_MESON
+	select HOST_SHADERC		if GST_PLUGINS_BAD1_VULKAN
+
+	select GLIB
+	select GSTREAMER1
+	select GST_PLUGINS_BASE1
+	select GST_PLUGINS_BASE1_GL	if GST_PLUGINS_BAD1_GL
+	select ORC
+	select BZIP2			if GST_PLUGINS_BAD1_BZ2
+	select BZIP2_LIBBZ2		if GST_PLUGINS_BAD1_BZ2
+	select BLUEZ			if GST_PLUGINS_BAD1_BLUEZ
+	select BLUEZ_LIBBLUETOOTH	if GST_PLUGINS_BAD1_BLUEZ
+	select LCMS			if GST_PLUGINS_BAD1_COLORMANAGEMENT
+	select LIBCURL			if GST_PLUGINS_BAD1_CURL
+	select LIBCURL_LIBSSH2		if GST_PLUGINS_BAD1_CURL_SSH2
+	select LIBXML2			if GST_PLUGINS_BAD1_DASH || GST_PLUGINS_BAD1_SMOOTHSTREAMING || GST_PLUGINS_BAD1_TTML
+	select LIBXML2_DOM		if GST_PLUGINS_BAD1_DASH || GST_PLUGINS_BAD1_SMOOTHSTREAMING
+	select OPENSSL			if GST_PLUGINS_BAD1_DTLS
+	select OPENSSL			if GST_PLUGINS_BAD1_HLS
+	select LIBMMS			if GST_PLUGINS_BAD1_LIBMMS
+	select LIBDRM			if GST_PLUGINS_BAD1_KMS || GST_PLUGINS_BAD1_WAYLAND
+	select OPUS			if GST_PLUGINS_BAD1_OPUS
+	select RTMPDUMP			if GST_PLUGINS_BAD1_RTMP
+	select LIBSNDFILE		if GST_PLUGINS_BAD1_SNDFILE
+	select LIBSRTP			if GST_PLUGINS_BAD1_SRTP
+	select PANGO			if GST_PLUGINS_BAD1_TTML || GST_PLUGINS_BAD1_CLOSEDCAPTION
+	select CAIRO			if GST_PLUGINS_BAD1_TTML || GST_PLUGINS_BAD1_CLOSEDCAPTION
+	select LIBGUDEV			if GST_PLUGINS_BAD1_UVCH264
+	select LIBUSB			if GST_PLUGINS_BAD1_UVCH264
+	select LIBVA			if GST_PLUGINS_BAD1_VA
+	select VO_AACENC		if GST_PLUGINS_BAD1_VOAACENC
+	select VULKAN_LOADER		if GST_PLUGINS_BAD1_VULKAN
+	select WAYLAND			if GST_PLUGINS_BAD1_WAYLAND
+	select WAYLAND_PROTOCOLS	if GST_PLUGINS_BAD1_WAYLAND
+	select LIBNICE			if GST_PLUGINS_BAD1_WEBRTC
+
+	prompt "gst-plugins-bad               "
+	help
+	  GStreamer Bad Plug-ins is a set of plug-ins that aren't
+	  up to par compared to the rest. They might be close to being
+	  good quality, but they're missing something - be it a good
+	  code review, some documentation, a set of tests, a real
+	  live maintainer, or some actual wide use.
+
+
+if GST_PLUGINS_BAD1
+
+comment "dependency-less plugins"
+
+config GST_PLUGINS_BAD1_ACCURIP
+	bool
+	prompt "accurip"
+
+config GST_PLUGINS_BAD1_ADPCMDEC
+	bool
+	prompt "adpcmdec"
+
+config GST_PLUGINS_BAD1_ADPCMENC
+	bool
+	prompt "adpcmenc"
+
+config GST_PLUGINS_BAD1_AIFF
+	bool
+	prompt "aiff"
+
+config GST_PLUGINS_BAD1_ASFMUX
+	bool
+	prompt "asfmux"
+
+config GST_PLUGINS_BAD1_AUDIOBUFFERSPLIT
+	bool
+	prompt "audiobuffersplit"
+
+config GST_PLUGINS_BAD1_AUDIOFXBAD
+	bool
+	prompt "audiofxbad"
+
+config GST_PLUGINS_BAD1_AUDIOLATENCY
+	bool
+	prompt "audiolatency"
+
+config GST_PLUGINS_BAD1_AUDIOMIXMATRIX
+	bool
+	prompt "audiomixmatrix"
+
+config GST_PLUGINS_BAD1_AUDIOVISUALIZERS
+	bool
+	prompt "audiovisualizers"
+
+config GST_PLUGINS_BAD1_AUTOCONVERT
+	bool
+	prompt "autoconvert"
+
+config GST_PLUGINS_BAD1_BAYER
+	bool
+	prompt "bayer"
+
+config GST_PLUGINS_BAD1_CAMERABIN2
+	bool
+	prompt "camerabin2"
+
+config GST_PLUGINS_BAD1_COLOREFFECTS
+	bool
+	prompt "coloreffects"
+
+config GST_PLUGINS_BAD1_DEBUGUTILS
+	bool
+	prompt "debugutils"
+
+config GST_PLUGINS_BAD1_DVBSUBENC
+	bool
+	prompt "dvbsubenc"
+
+config GST_PLUGINS_BAD1_DVBSUBOVERLAY
+	bool
+	prompt "dvbsuboverlay"
+
+config GST_PLUGINS_BAD1_DVDSPU
+	bool
+	prompt "dvdspu"
+
+config GST_PLUGINS_BAD1_FACEOVERLAY
+	bool
+	prompt "faceoverlay"
+
+config GST_PLUGINS_BAD1_FESTIVAL
+	bool
+	prompt "festival"
+
+config GST_PLUGINS_BAD1_FIELDANALYSIS
+	bool
+	prompt "fieldanalysis"
+
+config GST_PLUGINS_BAD1_FREEVERB
+	bool
+	prompt "freeverb"
+
+config GST_PLUGINS_BAD1_FREI0R
+	bool
+	prompt "frei0r"
+
+config GST_PLUGINS_BAD1_GAUDIEFFECTS
+	bool
+	prompt "gaudieffects"
+
+config GST_PLUGINS_BAD1_GDP
+	bool
+	prompt "gdp"
+
+config GST_PLUGINS_BAD1_GEOMETRICTRANSFORM
+	bool
+	prompt "geometrictransform"
+
+config GST_PLUGINS_BAD1_ID3TAG
+	bool
+	prompt "id3tag"
+
+config GST_PLUGINS_BAD1_INTER
+	bool
+	prompt "inter"
+
+config GST_PLUGINS_BAD1_INTERLACE
+	bool
+	prompt "interlace"
+
+config GST_PLUGINS_BAD1_IVFPARSE
+	bool
+	prompt "ivfparse"
+
+config GST_PLUGINS_BAD1_IVTC
+	bool
+	prompt "ivtc"
+
+config GST_PLUGINS_BAD1_JP2KDECIMATOR
+	bool
+	prompt "jp2kdecimator"
+
+config GST_PLUGINS_BAD1_JPEGFORMAT
+	bool
+	prompt "jpegformat"
+
+config GST_PLUGINS_BAD1_LIBRFB
+	bool
+	prompt "librfb"
+
+config GST_PLUGINS_BAD1_MIDI
+	bool
+	prompt "midi"
+
+config GST_PLUGINS_BAD1_MPEGDEMUX
+	bool
+	prompt "mpegdemux"
+
+config GST_PLUGINS_BAD1_MPEGPSMUX
+	bool
+	prompt "mpegpsmux"
+
+config GST_PLUGINS_BAD1_MPEGTSDEMUX
+	bool
+	prompt "mpegtsdemux"
+
+config GST_PLUGINS_BAD1_MPEGTSMUX
+	bool
+	prompt "mpegtsmux"
+
+config GST_PLUGINS_BAD1_MXF
+	bool
+	prompt "mxf"
+
+config GST_PLUGINS_BAD1_NETSIM
+	bool
+	prompt "netsim"
+
+config GST_PLUGINS_BAD1_ONVIF
+	bool
+	prompt "onvif"
+
+config GST_PLUGINS_BAD1_PCAPPARSE
+	bool
+	prompt "pcapparse"
+
+config GST_PLUGINS_BAD1_PNM
+	bool
+	prompt "pnm"
+
+config GST_PLUGINS_BAD1_PROXY
+	bool
+	prompt "proxy"
+
+config GST_PLUGINS_BAD1_RAWPARSE
+	bool
+	prompt "rawparse"
+
+config GST_PLUGINS_BAD1_REMOVESILENCE
+	bool
+	prompt "removesilence"
+
+config GST_PLUGINS_BAD1_RIST
+	bool
+	prompt "rist"
+
+config GST_PLUGINS_BAD1_RTMP2
+	bool
+	prompt "rtmp2"
+
+config GST_PLUGINS_BAD1_RTP
+	bool
+	prompt "rtp"
+
+config GST_PLUGINS_BAD1_SDP
+	bool
+	prompt "sdp"
+
+config GST_PLUGINS_BAD1_SEGMENTCLIP
+	bool
+	prompt "segmentclip"
+
+config GST_PLUGINS_BAD1_SIREN
+	bool
+	prompt "siren"
+
+config GST_PLUGINS_BAD1_SMOOTH
+	bool
+	prompt "smooth"
+
+config GST_PLUGINS_BAD1_SPEED
+	bool
+	prompt "speed"
+
+config GST_PLUGINS_BAD1_SUBENC
+	bool
+	prompt "subenc"
+
+config GST_PLUGINS_BAD1_SWITCHBIN
+	bool
+	prompt "switchbin"
+
+config GST_PLUGINS_BAD1_TIMECODE
+	bool
+	prompt "timecode"
+
+config GST_PLUGINS_BAD1_V4L2CODECS
+	bool
+	prompt "v4l2codecs"
+
+config GST_PLUGINS_BAD1_VA
+	bool
+	prompt "va"
+
+config GST_PLUGINS_BAD1_VIDEOFILTERS
+	bool
+	prompt "videofilters"
+
+config GST_PLUGINS_BAD1_VIDEOFRAME_AUDIOLEVEL
+	bool
+	prompt "videoframe_audiolevel"
+
+config GST_PLUGINS_BAD1_VIDEOPARSERS
+	bool
+	prompt "videoparsers"
+
+config GST_PLUGINS_BAD1_VIDEOSIGNAL
+	bool
+	prompt "videosignal"
+
+config GST_PLUGINS_BAD1_VMNC
+	bool
+	prompt "vmnc"
+
+config GST_PLUGINS_BAD1_Y4M
+	bool
+	prompt "y4m"
+
+comment "plugins with dependencies"
+
+config GST_PLUGINS_BAD1_AOM
+	bool
+	# needs libaom
+	depends on BROKEN
+	prompt "aom"
+	help
+	  AOM AV1 video codec plugin
+
+config GST_PLUGINS_BAD1_AVTP
+	bool
+	# needs avtp
+	depends on BROKEN
+	prompt "avtp"
+	help
+	  AVTP plugin
+
+config GST_PLUGINS_BAD1_ASSRENDER
+	bool
+	# needs libass
+	depends on BROKEN
+	prompt "assrender"
+	help
+	  ASS/SSA subtitle renderer plugin
+
+config GST_PLUGINS_BAD1_BLUEZ
+	bool
+	prompt "bluez"
+	help
+	  Bluetooth audio A2DP/AVDTP sink, AVDTP source plugin
+
+config GST_PLUGINS_BAD1_BS2B
+	bool
+	# needs libbs2b
+	depends on BROKEN
+	prompt "bs2b"
+	help
+	  Bauer stereophonic-to-binaural audio plugin
+
+config GST_PLUGINS_BAD1_BZ2
+	bool
+	prompt "bz2"
+	help
+	  bz2 stream encoder and decoder plugin
+
+config GST_PLUGINS_BAD1_CHROMAPRINT
+	bool
+	# needs libchromaprint
+	depends on BROKEN
+	prompt "chromaprint"
+	help
+	  Chromaprint fingerprint audio plugin
+
+config GST_PLUGINS_BAD1_COLORMANAGEMENT
+	bool
+	prompt "colormanagement"
+	help
+	  Color management correction plugin
+
+config GST_PLUGINS_BAD1_CLOSEDCAPTION
+	bool
+	prompt "closedcaption"
+	help
+	  Closed caption extractor, decoder, and overlay plugin
+
+config GST_PLUGINS_BAD1_CURL
+	bool
+	prompt "curl"
+	help
+	  cURL network source and sink plugin
+
+config GST_PLUGINS_BAD1_CURL_SSH2
+	bool
+	depends on GST_PLUGINS_BAD1_CURL
+	prompt "ssh support"
+	help
+	  cURL network source and sink plugin libssh2 support
+
+config GST_PLUGINS_BAD1_DASH
+	bool
+	prompt "dash"
+	help
+	  DASH demuxer plugin
+
+config GST_PLUGINS_BAD1_DC1394
+	bool
+	# needs libdc1394
+	depends on BROKEN
+	prompt "dc1394"
+	help
+	  libdc1394 IIDC camera source plugin
+
+config GST_PLUGINS_BAD1_DECKLINK
+	bool
+	prompt "decklink"
+	help
+	  DeckLink audio/video source/sink plugin
+
+config GST_PLUGINS_BAD1_DIRECTFB
+	bool
+	# needs directfb
+	depends on BROKEN
+	prompt "directfb"
+	help
+	  DirectFB video sink plugin
+
+config GST_PLUGINS_BAD1_DTLS
+	bool
+	prompt "dtls"
+	help
+	  DTLS encoder and decoder plugin
+
+config GST_PLUGINS_BAD1_DTS
+	bool
+	# needs libdca
+	depends on BROKEN
+	prompt "dts"
+	help
+	  DTS audio decoder plugin
+
+config GST_PLUGINS_BAD1_DVB
+	bool
+	prompt "dvb"
+	help
+	  DVB video bin and source plugin
+
+config GST_PLUGINS_BAD1_FAAC
+	bool
+	# needs faac
+	depends on BROKEN
+	prompt "faac"
+	help
+	  Free AAC audio encoder plugin
+
+config GST_PLUGINS_BAD1_FAAD
+	bool
+	# needs faad2
+	depends on BROKEN
+	prompt "faad"
+	help
+	  Free AAC audio decoder plugin
+
+config GST_PLUGINS_BAD1_FBDEV
+	bool
+	prompt "fbdev"
+	help
+	  Framebuffer video sink plugin
+
+config GST_PLUGINS_BAD1_FDKAAC
+	bool
+	# needs fdk-aac
+	depends on BROKEN
+	prompt "fdkaac"
+	help
+	  Fraunhofer AAC audio codec plugin
+
+config GST_PLUGINS_BAD1_FLITE
+	bool
+	# needs flite
+	depends on BROKEN
+	prompt "flite"
+	help
+	  Flite speech synthesizer source plugin
+
+config GST_PLUGINS_BAD1_FLUIDSYNTH
+	bool
+	# needs fluidsynth
+	depends on BROKEN
+	prompt "fluidsynth"
+	help
+	  Fluidsynth MIDI decoder plugin
+
+config GST_PLUGINS_BAD1_GME
+	bool
+	# needs libgme
+	depends on BROKEN
+	prompt "gme"
+	help
+	  libgme gaming console music file decoder plugin
+
+config GST_PLUGINS_BAD1_GSM
+	bool
+	# needs gsm
+	depends on BROKEN
+	prompt "gsm"
+	help
+	  GSM encoder/decoder plugin
+
+config GST_PLUGINS_BAD1_HLS
+	bool
+	prompt "hls"
+	help
+	  HTTP Live Streaming plugin
+
+config GST_PLUGINS_BAD1_IPCPIPELINE
+	bool
+	prompt "ipcpipeline"
+	help
+	  Inter-process communication plugin
+
+config GST_PLUGINS_BAD1_IQA
+	bool
+	# needs libdssim
+	depends on BROKEN
+	prompt "iqa"
+	help
+	  Image quality assessment plugin
+
+config GST_PLUGINS_BAD1_KATE
+	bool
+	# needs kate
+	depends on BROKEN
+	prompt "kate"
+	help
+	  Kate subtitle parser, tagger, and codec plugin
+
+config GST_PLUGINS_BAD1_KMS
+	bool
+	prompt "kms"
+	help
+	  KMS video sink plugin
+
+config GST_PLUGINS_BAD1_LADSPA
+	bool
+	# needs ladspa-sdk
+	depends on BROKEN
+	prompt "ladspa"
+	help
+	  LADSPA plugin bridge
+
+config GST_PLUGINS_BAD1_LIBDE265
+	bool
+	# needs libde265
+	depends on BROKEN
+	prompt "libde265"
+	help
+	  HEVC/H.265 video decoder plugin
+
+config GST_PLUGINS_BAD1_LIBMMS
+	bool
+	prompt "libmms"
+	help
+	  Microsoft multimedia server network source plugin
+
+config GST_PLUGINS_BAD1_LV2
+	bool
+	# needs liblilv
+	depends on BROKEN
+	prompt "lv2"
+	help
+	  LV2 audio plugin bridge
+
+config GST_PLUGINS_BAD1_MICRODNS
+	bool
+	# needs libmicrodns
+	depends on BROKEN
+	prompt "microdns"
+	help
+	  libmicrodns-based device provider
+
+config GST_PLUGINS_BAD1_MODPLUG
+	bool
+	# needs libmodplug
+	depends on BROKEN
+	prompt "modplug"
+	help
+	  ModPlug audio decoder plugin
+
+config GST_PLUGINS_BAD1_MPEG2ENC
+	bool
+	# needs mjpegtools & mpeg2encpp
+	depends on BROKEN
+	prompt "mpeg2enc"
+	help
+	  mpeg2enc video encoder plugin
+
+config GST_PLUGINS_BAD1_MPLEX
+	bool
+	# needs mjpegtools & mplex2
+	depends on BROKEN
+	prompt "mplex"
+	help
+	  mplex audio/video multiplexer plugin
+
+config GST_PLUGINS_BAD1_MSDK
+	bool
+	# needs Intel MediaSDK
+	depends on BROKEN
+	prompt "msdk"
+	help
+	  Intel Media SDK video encoder/decoder plugin
+
+config GST_PLUGINS_BAD1_MUSEPACK
+	bool
+	# needs mpcdec
+	depends on BROKEN
+	prompt "musepack"
+	help
+	  libmpcdec Musepack decoder plugin
+
+config GST_PLUGINS_BAD1_NEON
+	bool
+	# needs neon
+	depends on BROKEN
+	prompt "neon"
+	help
+	  NEON HTTP source plugin
+
+config GST_PLUGINS_BAD1_NVCODEC
+	bool
+	# needs nvcuvid & cuda
+	depends on BROKEN
+	prompt "nvcodec"
+	help
+	  NVIDIA GPU codec plugin
+
+config GST_PLUGINS_BAD1_OFA
+	bool
+	# needs libofa
+	depends on BROKEN
+	prompt "ofa"
+	help
+	  Open Fingerprint Architecture library plugin
+
+config GST_PLUGINS_BAD1_OPENAL
+	bool
+	# needs OpenAL
+	depends on BROKEN
+	prompt "openal"
+	help
+	  OpenAL plugin
+
+config GST_PLUGINS_BAD1_OPENCV
+	bool
+	depends on BROKEN
+	prompt "opencv"
+	help
+	  OpenCV computer vision library support
+
+config GST_PLUGINS_BAD1_OPENEXR
+	bool
+	# needs OpenEXR
+	depends on BROKEN
+	prompt "openexr"
+	help
+	  OpenEXR plugin
+
+config GST_PLUGINS_BAD1_OPENH264
+	bool
+	# needs openh264
+	depends on BROKEN
+	prompt "openh264"
+	help
+	  H.264 video codec plugin
+
+config GST_PLUGINS_BAD1_OPENJPEG
+	bool
+	# needs openjpeg
+	depends on BROKEN
+	prompt "openjpeg"
+	help
+	  JPEG2000 image codec plugin
+
+config GST_PLUGINS_BAD1_OPENMPT
+	bool
+	# needs libopenmpt
+	depends on BROKEN
+	prompt "openmpt"
+	help
+	  OpenMPT module music library plugin
+
+config GST_PLUGINS_BAD1_OPENNI2
+	bool
+	# needs libopenni2
+	depends on BROKEN
+	prompt "openni2"
+	help
+	  OpenNI2 library plugin
+
+config GST_PLUGINS_BAD1_OPENSLES
+	bool
+	depends on BROKEN
+	prompt "opensles"
+	help
+	  OpenSL ES audio source/sink plugin
+
+config GST_PLUGINS_BAD1_OPUS
+	bool
+	prompt "opus"
+	help
+	  OPUS audio parser plugin
+
+config GST_PLUGINS_BAD1_RESINDVD
+	bool
+	# needs dvdnav & dvdread
+	depends on BROKEN
+	prompt "resindvd"
+	help
+	  Resin DVD playback plugin
+
+config GST_PLUGINS_BAD1_RSVG
+	bool
+	# needs librsvg2
+	depends on BROKEN
+	prompt "rsvg"
+	help
+	  SVG overlayer and image decoder plugin
+
+config GST_PLUGINS_BAD1_RTMP
+	bool
+	prompt "rtmp"
+	help
+	  RTMP video network source and sink plugin
+
+config GST_PLUGINS_BAD1_SBC
+	bool
+	# needs sbc
+	depends on BROKEN
+	prompt "sbc"
+	help
+	  SBC bluetooth audio codec plugin
+
+config GST_PLUGINS_BAD1_SCTP
+	bool
+	# needs usrsctp
+	depends on BROKEN
+	prompt "sctp"
+	help
+	  SCTP plugin
+
+config GST_PLUGINS_BAD1_SHM
+	bool
+	prompt "shm"
+	help
+	  Shared memory source/sink plugin
+
+config GST_PLUGINS_BAD1_SMOOTHSTREAMING
+	bool
+	prompt "smoothstreaming"
+	help
+	  Microsoft Smooth Streaming demuxer plugin
+
+config GST_PLUGINS_BAD1_SNDFILE
+	bool
+	prompt "sndfile"
+	help
+	  libsndfile plugin
+
+config GST_PLUGINS_BAD1_SOUNDTOUCH
+	bool
+	# needs soundtouch
+	depends on BROKEN
+	prompt "soundtouch"
+	help
+	  Audio pitch controller & BPM detection plugin
+
+config GST_PLUGINS_BAD1_SPANDSP
+	bool
+	# needs spandsp
+	depends on BROKEN
+	prompt "spandsp"
+	help
+	  Packet loss concealment audio plugin
+
+config GST_PLUGINS_BAD1_SRT
+	bool
+	# needs libsrt
+	depends on BROKEN
+	prompt "srt"
+	help
+	  Secure, Reliable, Transport client/server network source/sink plugin
+
+config GST_PLUGINS_BAD1_SRTP
+	bool
+	prompt "srtp"
+	help
+	  Secure RTP codec plugin
+
+config GST_PLUGINS_BAD1_SVTHEVCENC
+	bool
+	# needs svthevcenc
+	depends on BROKEN
+	prompt "svthevcenc"
+	help
+	  Scalable Video Technology for HEVC encoder plugin
+
+config GST_PLUGINS_BAD1_TELETEXT
+	bool
+	# needs zvbi
+	depends on BROKEN
+	prompt "teletext"
+	help
+	  Teletext plugin
+
+config GST_PLUGINS_BAD1_TINYALSA
+	bool
+	# needs tinyalsa
+	depends on BROKEN
+	prompt "tinyalsa"
+	help
+	  TinyALSA plugin
+
+config GST_PLUGINS_BAD1_TRANSCODE
+	bool
+	prompt "transcode"
+	help
+	  Transcode plugin
+
+config GST_PLUGINS_BAD1_TTML
+	bool
+	prompt "ttml"
+	help
+	  TTML subtitle parser and renderer plugin
+
+config GST_PLUGINS_BAD1_UVCH264
+	bool
+	prompt "uvch264"
+	help
+	  UVC compliant H.264 camera source plugin
+
+config GST_PLUGINS_BAD1_VOAACENC
+	bool
+	prompt "voaacenc"
+	help
+	  AAC audio encoder plugin
+
+config GST_PLUGINS_BAD1_VOAMRWBENC
+	bool
+	# needs vo-amrwbenc
+	depends on BROKEN
+	prompt "voamrwbenc"
+	help
+	  AMR-WB audio encoder plugin
+
+config GST_PLUGINS_BAD1_VULKAN
+	bool
+	prompt "vulkan"
+	help
+	  Vulkan video sink plugin
+
+config GST_PLUGINS_BAD1_WAYLAND
+	bool
+	prompt "wayland"
+
+config GST_PLUGINS_BAD1_WEBP
+	bool
+	# needs libwebp
+	depends on BROKEN
+	prompt "webp"
+	help
+	  WebP image codec plugin
+
+config GST_PLUGINS_BAD1_WEBRTC
+	bool
+	prompt "webrtc"
+	help
+	  WebRTC audio/video network bin plugin
+
+config GST_PLUGINS_BAD1_WEBRTCDSP
+	bool
+	# needs webrtc-audio-processing
+	depends on BROKEN
+	prompt "webrtcdsp"
+	help
+	  Plugin with various audio filters provided by the WebRTC audio processing library
+
+config GST_PLUGINS_BAD1_WILDMIDI
+	bool
+	# needs WildMIDI
+	depends on BROKEN
+	prompt "wildmidi"
+	help
+	  WildMidi midi soft synth plugin
+
+config GST_PLUGINS_BAD1_WPE
+	bool
+	# needs wpe-webkit
+	depends on BROKEN
+	prompt "wpe"
+	help
+	  WPE Web browser plugin
+
+config GST_PLUGINS_BAD1_X265
+	bool
+	# needs x265
+	depends on BROKEN
+	prompt "x265"
+	help
+	  HEVC/H.265 video encoder plugin
+
+config GST_PLUGINS_BAD1_ZBAR
+	bool
+	# needs zbar
+	depends on BROKEN
+	prompt "zbar"
+	help
+	  Barcode image scanner plugin using zbar library
+
+config GST_PLUGINS_BAD1_ZXING
+	bool
+	# needs zxing-cpp
+	depends on BROKEN
+	prompt "zxing"
+	help
+	  Barcode image scanner plugin using zxing-cpp library
+
+comment "Support options"
+
+config GST_PLUGINS_BAD1_GL
+	bool
+	prompt "gl"
+	help
+	  GStreamer OpenGL integration support (used by various plugins)
+
+endif
+

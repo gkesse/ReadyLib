@@ -33,6 +33,13 @@ xen_compile:
 	--rootcmd fakeroot \
 	--initrd kernel_image kernel_headers
 #================================================	
+# ptxdist
+ptxdist_download:
+	@if ! [ -d $(GPTXDIST_ROOT) ] ; then mkdir -p $(GPTXDIST_ROOT) ; fi
+	@if ! [ -d $(GPTXDIST_NAME) ] ; then cd $(GPTXDIST_ROOT) && wget $(GPTXDIST_URL) ; fi
+	@if ! [ -d $(GPTXDIST_NAME) ] ; then cd $(GPTXDIST_ROOT) && tar xjfv $(GPTXDIST_ARCHIVE) ; fi
+	@if [ -f $(GPTXDIST_ARCHIVE) ] ; then cd $(GPTXDIST_ROOT) && rm -f $(GPTXDIST_ARCHIVE) ; fi
+#================================================	
 # linux_kernel
 linux_download:
 	@if ! [ -d $(GLINUX_ROOT) ] ; then mkdir -p $(GLINUX_ROOT) ; fi

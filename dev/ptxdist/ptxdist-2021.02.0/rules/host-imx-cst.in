@@ -1,0 +1,8 @@
+## SECTION=hosttools_noprompt
+
+config HOST_IMX_CST
+	tristate
+	select HOST_OPENSSL
+	default y if ALLYES
+	help
+	  NXP (proprietary) Code Signing Tool for High Assurance Boot.

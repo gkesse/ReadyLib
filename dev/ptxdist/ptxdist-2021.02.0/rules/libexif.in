@@ -1,0 +1,8 @@
+## SECTION=multimedia_libs
+
+config LIBEXIF
+	tristate
+	prompt "libexif"
+	help
+	  libexif is a library to support reading and writing EXIF
+	  metainformation.

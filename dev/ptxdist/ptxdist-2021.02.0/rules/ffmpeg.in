@@ -1,0 +1,12 @@
+## SECTION=applications
+
+config FFMPEG
+	tristate
+	select CROSS_NASM
+	prompt "ffmpeg"
+	help
+	  FFmpeg is the leading multimedia framework, able to decode,
+	  encode, transcode, mux, demux, stream, filter and play pretty
+	  much anything that humans and machines have created. It supports
+	  the most obscure ancient formats up to the cutting edge.
+

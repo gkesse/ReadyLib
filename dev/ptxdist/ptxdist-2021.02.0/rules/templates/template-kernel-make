@@ -1,0 +1,122 @@
+# -*-makefile-*-
+#
+# Copyright (C) @YEAR@ by @AUTHOR@
+#
+# For further information about the PTXdist project and license conditions
+# see the README file.
+#
+
+#
+# We provide this package
+#
+PACKAGES-$(PTXCONF_KERNEL_@PACKAGE@) += kernel-@package@
+
+#
+# Paths and names
+#
+KERNEL_@PACKAGE@_VERSION	:= @VERSION@
+KERNEL_@PACKAGE@_MD5		:=
+KERNEL_@PACKAGE@		:= linux-@package@-$(KERNEL_@PACKAGE@_VERSION)
+KERNEL_@PACKAGE@_SUFFIX		:= tar.xz
+KERNEL_@PACKAGE@_URL		:= $(call kernel-url, KERNEL_@PACKAGE@)
+KERNEL_@PACKAGE@_PATCHES	:= linux-$(KERNEL_@PACKAGE@_VERSION)
+KERNEL_@PACKAGE@_SOURCE		:= $(SRCDIR)/$(KERNEL_@PACKAGE@_PATCHES).$(KERNEL_@PACKAGE@_SUFFIX)
+KERNEL_@PACKAGE@_DIR		:= $(BUILDDIR)/$(KERNEL_@PACKAGE@)
+KERNEL_@PACKAGE@_BUILD_DIR	:= $(KERNEL_@PACKAGE@_DIR)-build
+KERNEL_@PACKAGE@_CONFIG		:= $(call ptx/in-platformconfigdir, kernelconfig-@package@)
+KERNEL_@PACKAGE@_LICENSE	:= GPL-2.0-only
+KERNEL_@PACKAGE@_LICENSE_FILES	:=
+KERNEL_@PACKAGE@_BUILD_OOT	:= KEEP
+
+# ----------------------------------------------------------------------------
+# Prepare
+# ----------------------------------------------------------------------------
+
+# use CONFIG_CC_STACKPROTECTOR if available. The rest makes no sense for the kernel
+KERNEL_@PACKAGE@_WRAPPER_BLACKLIST := \
+	$(PTXDIST_LOWLEVEL_WRAPPER_BLACKLIST)
+
+KERNEL_@PACKAGE@_PATH		:= PATH=$(CROSS_PATH)
+KERNEL_@PACKAGE@_SHARED_OPT	:= \
+	-C $(KERNEL_@PACKAGE@_DIR) \
+	O=$(KERNEL_@PACKAGE@_BUILD_DIR) \
+	$(call kernel-opts, KERNEL_@PACKAGE@)
+
+# no gcc plugins; avoid config changes depending on the host compiler
+KERNEL_@PACKAGE@_SHARED_OPT	+= \
+	HOSTCXX="$(HOSTCXX) -DGENERATOR_FILE" \
+	HOSTCC="$(HOSTCC) -DGENERATOR_FILE"
+
+KERNEL_@PACKAGE@_CONF_TOOL	:= kconfig
+KERNEL_@PACKAGE@_CONF_OPT	:= \
+	$(KERNEL_@PACKAGE@_SHARED_OPT)
+
+# force using KERNEL_@PACKAGE@_VERSION in the kernelconfig
+#KERNEL_@PACKAGE@_CONF_OPT	+= \
+#	KERNELVERSION=$(KERNEL_@PACKAGE@_VERSION)
+
+KERNEL_@PACKAGE@_IMAGES := @image@
+KERNEL_@PACKAGE@_IMAGES := $(addprefix $(KERNEL_@PACKAGE@_BUILD_DIR)/arch/$(GENERIC_KERNEL_ARCH)/boot/,$(KERNEL_@PACKAGE@_IMAGES))
+
+ifdef PTXCONF_KERNEL_@PACKAGE@
+$(KERNEL_@PACKAGE@_CONFIG):
+	@echo
+	@echo "*************************************************************************"
+	@echo " Please generate a kernelconfig with 'ptxdist menuconfig kernel-@package@'"
+	@echo "*************************************************************************"
+	@echo
+	@echo
+	@exit 1
+endif
+
+# ----------------------------------------------------------------------------
+# Compile
+# ----------------------------------------------------------------------------
+
+KERNEL_@PACKAGE@_MAKE_OPT	:= \
+	$(KERNEL_@PACKAGE@_SHARED_OPT) \
+	@image@ modules
+
+# ----------------------------------------------------------------------------
+# Install
+# ----------------------------------------------------------------------------
+
+KERNEL_@PACKAGE@_INSTALL_OPT	:= \
+	$(call kernel-opts, KERNEL_@PACKAGE@) \
+	modules_install
+
+# ----------------------------------------------------------------------------
+# Target-Install
+# ----------------------------------------------------------------------------
+
+$(STATEDIR)/kernel-@package@.targetinstall:
+	@$(call targetinfo)
+
+	@$(foreach image, $(KERNEL_@PACKAGE@_IMAGES), \
+		install -v -m 644 $(image) \
+			$(IMAGEDIR)/$(notdir $(image))-@package@$(ptx/nl))
+
+	@$(call install_init,  kernel-@package@)
+	@$(call install_fixup, kernel-@package@, PRIORITY,optional)
+	@$(call install_fixup, kernel-@package@, SECTION,base)
+	@$(call install_fixup, kernel-@package@, AUTHOR,"@AUTHOR@")
+	@$(call install_fixup, kernel-@package@, DESCRIPTION,missing)
+
+	@$(call install_copy, kernel-@package@, 0, 0, 0644, \
+		$(IMAGEDIR)/@image@-@package@, /boot/@image@-@package@, n)
+
+	@$(call install_glob, kernel-@package@, 0, 0, -, /lib/modules, *.ko,, k)
+	@$(call install_glob, kernel-@package@, 0, 0, -, /lib/modules,, *.ko */build */source, n)
+
+	@$(call install_finish, kernel-@package@)
+
+	@$(call touch)
+
+# ----------------------------------------------------------------------------
+# oldconfig / menuconfig
+# ----------------------------------------------------------------------------
+
+$(call ptx/kconfig-targets, kernel-@package@): $(STATEDIR)/kernel-@package@.extract
+	@$(call world/kconfig, KERNEL_@PACKAGE@, $(subst kernel-@package@_,,$@))
+
+# vim: syntax=make

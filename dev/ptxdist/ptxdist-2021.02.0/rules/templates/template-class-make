@@ -1,0 +1,78 @@
+# -*-makefile-*-
+#
+# Copyright (C) @YEAR@ by @AUTHOR@
+#
+# For further information about the PTXdist project and license conditions
+# see the README file.
+#
+
+#
+# We provide this package
+#
+@CLASS@PACKAGES-$(PTXCONF_@CLASS@@PACKAGE@) += @class@@package@
+
+#
+# Paths and names
+#
+@CLASS@@PACKAGE@_VERSION	:= @VERSION@
+@CLASS@@PACKAGE@_MD5	:=
+@CLASS@@PACKAGE@		:= @package_filename@-$(@CLASS@@PACKAGE@_VERSION)
+@CLASS@@PACKAGE@_SUFFIX	:= @SUFFIX@
+@CLASS@@PACKAGE@_URL	:= @URL@/$(@CLASS@@PACKAGE@).$(@CLASS@@PACKAGE@_SUFFIX)
+@CLASS@@PACKAGE@_SOURCE	:= $(SRCDIR)/$(@CLASS@@PACKAGE@).$(@CLASS@@PACKAGE@_SUFFIX)
+@CLASS@@PACKAGE@_DIR	:= $(@CLASS@BUILDDIR)/$(@CLASS@@PACKAGE@)
+@CLASS@@PACKAGE@_LICENSE	:= unknown
+@CLASS@@PACKAGE@_LICENSE_FILES	:=
+
+# ----------------------------------------------------------------------------
+# Get
+# ----------------------------------------------------------------------------
+
+#$(@CLASS@@PACKAGE@_SOURCE):
+#	@$(call targetinfo)
+#	@$(call get, @CLASS@@PACKAGE@)
+
+# ----------------------------------------------------------------------------
+# Prepare
+# ----------------------------------------------------------------------------
+
+#@CLASS@@PACKAGE@_CONF_ENV	:= $(@AUTOCONF_CLASS@ENV)
+
+#
+# @conf_tool@
+#
+@CLASS@@PACKAGE@_CONF_TOOL	:= @conf_tool@
+#@CLASS@@PACKAGE@_CONF_OPT	:= @CONF_OPT@
+
+#$(STATEDIR)/@class@@package@.prepare:
+#	@$(call targetinfo)
+#	@$(call world/prepare, @CLASS@@PACKAGE@)
+#	@$(call touch)
+
+# ----------------------------------------------------------------------------
+# Compile
+# ----------------------------------------------------------------------------
+
+#$(STATEDIR)/@class@@package@.compile:
+#	@$(call targetinfo)
+#	@$(call world/compile, @CLASS@@PACKAGE@)
+#	@$(call touch)
+
+# ----------------------------------------------------------------------------
+# Install
+# ----------------------------------------------------------------------------
+
+#$(STATEDIR)/@class@@package@.install:
+#	@$(call targetinfo)
+#	@$(call world/install, @CLASS@@PACKAGE@)
+#	@$(call touch)
+
+# ----------------------------------------------------------------------------
+# Clean
+# ----------------------------------------------------------------------------
+
+#$(STATEDIR)/@class@@package@.clean:
+#	@$(call targetinfo)
+#	@$(call clean_pkg, @CLASS@@PACKAGE@)
+
+# vim: syntax=make

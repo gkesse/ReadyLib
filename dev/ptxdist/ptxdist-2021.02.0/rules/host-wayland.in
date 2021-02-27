@@ -1,0 +1,8 @@
+## SECTION=hosttools_noprompt
+
+config HOST_WAYLAND
+	tristate
+	default y if ALLYES
+	select HOST_EXPAT
+	select HOST_LIBFFI
+	select HOST_MESON

@@ -1,0 +1,9 @@
+## SECTION=python3
+
+config PYTHON3_IPYTHON_GENUTILS
+	tristate
+	select PYTHON3
+	prompt "ipython-genutils"
+	help
+	  Vestigial utilities from IPython.
+	  Pretend this doesn’t exist. Nobody should use it.

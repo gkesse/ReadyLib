@@ -1,0 +1,40 @@
+## SECTION=networking
+
+menuconfig MOSQUITTO
+	tristate
+	prompt "mosquitto                     "
+	select HOST_CMAKE
+	select OPENSSL	if MOSQUITTO_TLS
+	select C_ARES	if MOSQUITTO_SRV
+	select SYSTEMD	if MOSQUITTO_SYSTEMD_UNIT
+	help
+	  Open source MQTT message broker, library, and client.
+
+if MOSQUITTO
+
+config MOSQUITTO_BROKER
+	bool
+	prompt "Broker"
+
+config MOSQUITTO_SYSTEMD_UNIT
+	bool
+	default y
+	select MOSQUITTO_BROKER
+	depends on INITMETHOD_SYSTEMD
+	prompt "install systemd unit file"
+
+config MOSQUITTO_CLIENTS
+	bool
+	prompt "Clients"
+
+config MOSQUITTO_TLS
+	bool
+	prompt "TLS support"
+
+config MOSQUITTO_SRV
+	bool
+	prompt "SRV lookup support"
+
+endif
+
+# vim: ft=kconfig noet tw=72

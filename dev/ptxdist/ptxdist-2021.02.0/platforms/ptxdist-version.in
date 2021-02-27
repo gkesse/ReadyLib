@@ -1,0 +1,6 @@
+## SECTION=ptxdist_version
+## SECTION=platform_version
+
+config PLATFORMCONFIG_VERSION
+	string
+	default "$(PTXDIST_VERSION_FULL)"

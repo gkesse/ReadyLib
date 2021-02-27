@@ -1,0 +1,6 @@
+## SECTION=hosttools_noprompt
+
+config HOST_XCB_PROTO
+	tristate
+	select HOST_SYSTEM_PYTHON3
+	default y if ALLYES

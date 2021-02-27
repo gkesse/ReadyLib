@@ -1,0 +1,9 @@
+## SECTION=networkmanager_plugins
+
+config NETWORKMANAGER_OPENVPN
+	tristate
+	select HOST_GETTEXT
+	select OPENVPN
+	select GLIB
+	select NETWORKMANAGER
+	prompt "openvpn"

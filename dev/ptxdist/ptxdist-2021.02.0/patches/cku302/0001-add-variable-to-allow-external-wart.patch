@@ -1,0 +1,35 @@
+From: Michael Olbrich <m.olbrich@pengutronix.de>
+Date: Tue, 5 Jul 2011 11:14:02 +0200
+Subject: [PATCH] add variable to allow external 'wart'
+
+this fixes cross-compiling
+
+Signed-off-by: Michael Olbrich <m.olbrich@pengutronix.de>
+---
+ makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/makefile b/makefile
+index 9efe2622d9fc..69bb6131c986 100644
+--- a/makefile
++++ b/makefile
+@@ -927,6 +927,7 @@ CC= cc
+ CC2= cc
+ MAKE= make
+ SHELL=/bin/sh
++WART=./wart
+ 
+ ###########################################################################
+ # (Ancient) UNIX V7-specific variables.
+@@ -1421,9 +1422,9 @@ ckclib.$(EXT): ckclib.c ckclib.h ckcdeb.h ckcasc.h ckcsym.h
+ 
+ ckcpro.$(EXT): ckcpro.c ckcker.h ckcdeb.h ckcsym.h ckcasc.h ckclib.h
+ 
+-ckcpro.c: ckcpro.w wart ckcdeb.h ckcsym.h ckcasc.h ckcker.h ckcnet.h ckctel.h \
++ckcpro.c: ckcpro.w $(WART) ckcdeb.h ckcsym.h ckcasc.h ckcker.h ckcnet.h ckctel.h \
+ 	 ckclib.h
+-	./wart ckcpro.w ckcpro.c
++	$(WART) ckcpro.w ckcpro.c
+ 
+ ckcfns.$(EXT): ckcfns.c ckcker.h ckcdeb.h ckcsym.h ckcasc.h ckcxla.h ckcuni.h \
+ 		ckuxla.h ckclib.h ckcnet.h

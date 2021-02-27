@@ -1,0 +1,63 @@
+# -*-makefile-*-
+#
+# Copyright (C) @YEAR@ by @AUTHOR@
+#
+# For further information about the PTXdist project and license conditions
+# see the README file.
+#
+
+#
+# We provide this package
+#
+PACKAGES-$(PTXCONF_@PACKAGE@) += @package@
+
+#
+# Paths and names and versions
+#
+@PACKAGE@_VERSION	:= @VERSION@
+@PACKAGE@		:= @package@-$(@PACKAGE@_VERSION)
+@PACKAGE@_URL		:= lndir://local_src/@package@
+@PACKAGE@_DIR		:= $(BUILDDIR)/$(@PACKAGE@)
+@PACKAGE@_LICENSE	:= unknown
+@PACKAGE@_LICENSE_FILES	:=
+
+ifneq ($(filter $(if $(PTX_COLLECTION),y,y m),$(PTXCONF_@PACKAGE@)),)
+$(STATEDIR)/kernel.targetinstall.post: $(STATEDIR)/@package@.targetinstall
+endif
+
+# ----------------------------------------------------------------------------
+# Prepare
+# ----------------------------------------------------------------------------
+
+@PACKAGE@_WRAPPER_BLACKLIST = $(KERNEL_WRAPPER_BLACKLIST)
+
+@PACKAGE@_CONF_TOOL := NO
+
+# ----------------------------------------------------------------------------
+# Compile
+# ----------------------------------------------------------------------------
+
+@PACKAGE@_MAKE_OPT = \
+	$(KERNEL_MODULE_OPT) \
+	-C $(KERNEL_DIR) \
+	M=$(@PACKAGE@_DIR) \
+	modules
+
+# ----------------------------------------------------------------------------
+# Install
+# ----------------------------------------------------------------------------
+
+$(STATEDIR)/@package@.install:
+	@$(call targetinfo)
+	@$(call touch)
+
+# ----------------------------------------------------------------------------
+# Target-Install
+# ----------------------------------------------------------------------------
+
+$(STATEDIR)/@package@.targetinstall:
+	@$(call targetinfo)
+	@$(call compile, @PACKAGE@, $(@PACKAGE@_MAKE_OPT)_install)
+	@$(call touch)
+
+# vim: syntax=make

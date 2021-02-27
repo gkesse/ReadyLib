@@ -1,0 +1,13 @@
+## SECTION=ptxdist_version
+## SECTION=platform_version
+
+config RUNTIME
+	bool
+	default y if "$(PTXDIST_DEP_TARGET)" != "build"
+
+config BUILDTIME
+	bool
+	default y if "$(PTXDIST_DEP_TARGET)" != "run"
+
+config VIRTUAL
+	bool

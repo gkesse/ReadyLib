@@ -1,0 +1,13 @@
+[Unit]
+Description=First boot services
+DefaultDependencies=no
+IgnoreOnIsolate=true
+Requires=sysinit.target
+After=sysinit.target system-update-pre.target
+Before=system-update.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/lib/systemd/systemd-rc-once
+StandardOutput=journal+console

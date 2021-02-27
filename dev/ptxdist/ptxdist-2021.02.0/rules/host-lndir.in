@@ -1,0 +1,5 @@
+## SECTION=hosttools_noprompt_ptx
+
+config HOST_LNDIR
+	bool
+	select HOST_XORGPROTO

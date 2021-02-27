@@ -1,0 +1,12 @@
+## SECTION=multimedia_framebuffer
+
+config FBTERM
+	tristate
+	prompt "fbterm"
+	select FREETYPE
+	select FONTCONFIG
+	help
+	  Framebuffer terminal. Supports unicode and uses fontconfig and Freetype
+	  for font rendering. Thus is has support for anti-aliased fonts.
+
+# vim: set ts=8 sw=8 noet ft=kconfig:

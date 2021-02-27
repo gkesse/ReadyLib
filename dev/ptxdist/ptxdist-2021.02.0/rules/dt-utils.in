@@ -1,0 +1,11 @@
+## SECTION=shell_and_console
+
+config DT_UTILS
+	tristate
+	prompt "dt-utils"
+	select UDEV
+	help
+	  Utilities to work with device trees in Linux userspace:
+
+	  * barebox-state: access barebox' state storage
+	  * fdtdump: dump a device tree binary to stdout
