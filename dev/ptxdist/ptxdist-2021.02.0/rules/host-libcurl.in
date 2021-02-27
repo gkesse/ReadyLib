@@ -1,5 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_LIBCURL
-	tristate
-	default y if ALLYES

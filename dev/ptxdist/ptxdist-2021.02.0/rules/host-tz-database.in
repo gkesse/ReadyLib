@@ -1,5 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_TZ_DATABASE
-	tristate
-	default y if ALLYES

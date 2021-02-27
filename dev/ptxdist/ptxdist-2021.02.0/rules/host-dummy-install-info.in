@@ -1,6 +1,0 @@
-## SECTION=hosttools_noprompt_ptx
-
-config HOST_DUMMY_INSTALL_INFO
-	bool
-	help
-	  Fake install-info that does nothing

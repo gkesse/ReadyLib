@@ -1,8 +1,0 @@
-## SECTION=perl
-
-config SOCKET6_PERL
-	tristate
-	select PERL
-	prompt "Socket6"
-	help
-	  FIXME

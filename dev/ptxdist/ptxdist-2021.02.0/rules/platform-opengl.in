@@ -1,8 +1,0 @@
-## SECTION=multimedia_libs
-
-config PLATFORM_OPENGL
-	tristate
-	select VIRTUAL
-	select MESALIB
-	select MESALIB_EGL
-	select MESALIB_GLES2

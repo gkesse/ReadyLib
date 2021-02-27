@@ -1,5 +1,0 @@
-## SECTION=security
-
-menu "tpm                           "
-source "generated/tpm.in"
-endmenu

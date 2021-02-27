@@ -1,5 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_BZIP2
-	tristate
-	default y if ALLYES

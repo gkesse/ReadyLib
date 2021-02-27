@@ -1,8 +1,0 @@
-## SECTION=@section@
-
-config @PACKAGE@
-	bool
-	prompt "@package@"
-	select QT5
-	help
-	  FIXME

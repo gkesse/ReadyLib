@@ -1,6 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_U_BOOT_TOOLS
-	tristate
-	select HOST_OPENSSL
-	default y if ALLYES

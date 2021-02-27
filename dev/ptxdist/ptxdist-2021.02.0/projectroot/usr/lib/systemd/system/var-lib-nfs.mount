@@ -1,8 +1,0 @@
-[Unit]
-Before=local-fs.target
-
-[Mount]
-What=tmpfs
-Where=/var/lib/nfs
-Type=tmpfs
-Options=nosuid,nodev,noexec,mode=0755,size=1M

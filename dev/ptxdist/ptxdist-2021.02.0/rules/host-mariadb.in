@@ -1,9 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_MARIADB
-	tristate
-	default y if ALLYES
-	select HOST_NCURSES
-	select HOST_CMAKE
-	help
-	  Required host part of the MariaDB build system

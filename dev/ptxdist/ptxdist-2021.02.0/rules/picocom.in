@@ -1,7 +1,0 @@
-## SECTION=shell_and_console
-
-config PICOCOM
-	tristate
-	prompt "picocom"
-	help
-          picocom is a minimal dumb-terminal emulation program

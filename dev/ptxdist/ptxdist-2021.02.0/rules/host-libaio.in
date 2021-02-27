@@ -1,7 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_LIBAIO
-	tristate
-	default y if ALLYES
-	help
-	  Required host part of some buildsystems

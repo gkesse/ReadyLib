@@ -1,8 +1,0 @@
-## SECTION=multimedia_wayland
-
-config WAYLAND_PROTOCOLS
-	tristate
-	select WAYLAND
-	prompt "wayland protocols"
-	help
-	  wayland compositor protocols

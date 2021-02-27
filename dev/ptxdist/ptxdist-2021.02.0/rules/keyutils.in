@@ -1,8 +1,0 @@
-## SECTION=selinux
-
-config KEYUTILS
-	tristate
-	prompt "keyutils"
-	help
-	  Tools to control the key management system
-	  build into the Linux kernel.

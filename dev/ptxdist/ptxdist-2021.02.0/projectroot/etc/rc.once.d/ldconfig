@@ -1,7 +1,0 @@
-#!/bin/sh
-
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-
-echo "Creating dynamic linker cache..."
-ldconfig --format=new -X &&
-rm -rf /var/cache/ldconfig

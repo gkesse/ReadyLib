@@ -1,7 +1,0 @@
-## SECTION=hosttools_noprompt_ptx
-
-config HOST_AUTOTOOLS_AUTOCONF
-	bool
-	select HOST_SYSTEM_PERL
-	select HOST_M4
-	default y

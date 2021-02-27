@@ -1,9 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config HOST_FLEX
-	tristate
-	select HOST_M4
-	default y if ALLYES
-	help
-	  Flex, the fast lexical analyser generator.
-

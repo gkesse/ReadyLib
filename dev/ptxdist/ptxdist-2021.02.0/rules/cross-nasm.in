@@ -1,4 +1,0 @@
-## SECTION=hosttools_noprompt
-
-config CROSS_NASM
-	bool
