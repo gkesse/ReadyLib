@@ -35,9 +35,11 @@ export "GCROSSTOOL_ROOT=$GRLIB_ROOT/crosstool"
 export "GCROSSTOOL_ARCHIVE=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0.tar.xz"
 export "GCROSSTOOL_NAME=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0"
 export "GCROSSTOOL_DOCKERFILE=$GCROSSTOOL_NAME/testing/docker/ubuntu16.04/dockerfile"
+export "GCROSSTOOL_COMPILER=i686-ubuntu16.04-linux-gnu"
 export "GCROSSTOOL_COMPILER=armv8-rpi3-linux-gnueabihf"
 export "GCROSSTOOL_COMPILER=arm-cortex_a8-linux-gnueabi"
-export "GCROSSTOOL_COMPILER=i686-ubuntu16.04-linux-gnu"
+export "GCROSSTOOL_BIN=arm-cortex_a8-linux-gnueabihf"
+export "GCROSSTOOL_GCC=/$HOME/x-tools/$GCROSSTOOL_BIN/bin/${GCROSSTOOL_BIN}-gcc"
 export "GCROSSTOOL_URL=http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.24.0.tar.xz"
 #================================================
 # git

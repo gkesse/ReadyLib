@@ -66,6 +66,14 @@ crosstool_show:
 	@cd $(GCROSSTOOL_NAME) && ./ct-ng show-$(GCROSSTOOL_COMPILER)
 crosstool_select:
 	@cd $(GCROSSTOOL_NAME) && ./ct-ng $(GCROSSTOOL_COMPILER)
+crosstool_config_m:
+	@cd $(GCROSSTOOL_NAME) && ./ct-ng menuconfig
+crosstool_config_s:
+	@cd $(GCROSSTOOL_NAME) && more .config
+crosstool_build:
+	@cd $(GCROSSTOOL_NAME) && ./ct-ng build
+crosstool_check:
+	@$(GCROSSTOOL_GCC) -v
 #================================================	
 # ptxdist
 ptxdist_download:
