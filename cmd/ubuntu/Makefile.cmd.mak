@@ -54,9 +54,6 @@ poky_branch:
 	@cd $(GPOKY_NAME) && git branch -a
 poky_branch_c:
 	@cd $(GPOKY_NAME) && git branch
-poky_branch_f:
-	@cd $(GPOKY_NAME) && git checkout -b $(GPOKY_BRANCH) origin/$(GPOKY_BRANCH)
-	@cd $(GPOKY_NAME) && git branch
 poky_branch_d:
 	@cd $(GPOKY_NAME) && git branch -d $(argv)
 	@cd $(GPOKY_NAME) && git branch
@@ -72,9 +69,6 @@ xilinx_branch:
 	@cd $(GXILINX_NAME) && git branch -a
 xilinx_branch_c:
 	@cd $(GXILINX_NAME) && git branch
-xilinx_branch_f:
-	@cd $(GXILINX_NAME) && git checkout -b $(GXILINX_BRANCH) origin/$(GXILINX_BRANCH)
-	@cd $(GXILINX_NAME) && git branch
 xilinx_branch_d:
 	@cd $(GXILINX_NAME) && git branch -d $(argv)
 	@cd $(GXILINX_NAME) && git branch
@@ -89,9 +83,6 @@ openembedded_install:
 openembedded_branch:
 	@cd $(GOPENEMBEDDED_NAME) && git branch -a
 openembedded_branch_c:
-	@cd $(GOPENEMBEDDED_NAME) && git branch
-openembedded_branch_f:
-	@cd $(GOPENEMBEDDED_NAME) && git checkout -b $(GOPENEMBEDDED_BRANCH) origin/$(GOPENEMBEDDED_BRANCH)
 	@cd $(GOPENEMBEDDED_NAME) && git branch
 openembedded_branch_d:
 	@cd $(GOPENEMBEDDED_NAME) && git branch -d $(argv)
