@@ -1,6 +1,6 @@
 #================================================
 SHELL: /bin/bash  
-#================================================	
+#================================================
 # package
 pkg_install:
 	sudo apt -y install \
@@ -26,7 +26,7 @@ pkg_install:
     unzip \
     npm \
     nodejs-legacy
-#================================================	
+#================================================
 # xenomai
 xen_all: pkg_install xen_download linux_download xen_patch xen_config
 
@@ -48,7 +48,7 @@ xen_compile:
 	@CONCURRENCY_LEVEL=$(nproc) make-kpkg \
 	--rootcmd fakeroot \
 	--initrd kernel_image kernel_headers
-#================================================	
+#================================================
 # crosstool
 crosstool_download:
 	@if ! [ -d $(GCROSSTOOL_ROOT) ] ; then mkdir -p $(GCROSSTOOL_ROOT) ; fi
@@ -77,7 +77,7 @@ crosstool_build:
 	@cd $(GCROSSTOOL_NAME) && ./ct-ng build
 crosstool_check:
 	@$(GCROSSTOOL_GCC) -v
-#================================================	
+#================================================
 # ptxdist
 ptxdist_download:
 	@if ! [ -d $(GPTXDIST_ROOT) ] ; then mkdir -p $(GPTXDIST_ROOT) ; fi
@@ -96,7 +96,7 @@ ptxdist_setup:
 	@ptxdist setup
 ptxdist_platform:
 	@ptxdist platformconfig
-#================================================	
+#================================================
 # linux_kernel
 linux_download:
 	@if ! [ -d $(GLINUX_ROOT) ] ; then mkdir -p $(GLINUX_ROOT) ; fi
@@ -115,7 +115,7 @@ linux_install_module:
 	@cd $(GLINUX_NAME) && sudo make modules_install
 linux_install_kernel:
 	@cd $(GLINUX_NAME) && sudo make install
-#================================================	
+#================================================
 # git
 git_push:
 	@cd $(GPROJECT_PATH) && git pull && git add --all && git commit -m "Initial Commit" && sudo git push -u origin master
@@ -132,23 +132,39 @@ git_config:
 	@git config --list
 git_store:
 	@git config --global credential.helper store
-#================================================	
+#================================================
 # npm
 npm_install:
 	@sudo npm install --global \
-    xpm@latest
+    xpm@0.5.0
+npm_uninstall:
+	@sudo npm uninstall \
+    xpm
 npm_link:
 	@sudo ln -s /usr/bin/nodejs /usr/bin/node
+npm_unlink:
+	@sudo unlink /usr/bin/node
 npm_upgrade:
 	@sudo npm cache clean -f
 	@sudo npm install -g n
 	@sudo n stable
-#================================================	
+#================================================
 # xpm
 xpm_install:
 	@sudo xpm install --global \
-    @xpack-dev-tools/qemu-arm@lastest
-#================================================	
+    xpack-dev-tools/qemu-arm@2.8.0-8.1
+#================================================
+# ros
+ros_source:
+	@./cmd/ros_source
+ros_key:
+	@sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+ros_install:
+	@sudo apt install ros-kinetic-desktop-full
+#================================================
+# unix
+unix_update:
+	@sudo apt update
 # unix
 unix_reboot:
 	@sudo shutdow -r now
@@ -158,4 +174,4 @@ unix_kernel_version:
 	@uname -mr
 unix_kernel_list:
 	@cmd/unix_kernel_list
-#================================================	
+#================================================
