@@ -62,6 +62,14 @@ poky_branch_s:
 	@cd $(GPOKY_NAME) && git branch
 poky_init:
 	@cd $(GPOKY_NAME) && . ./oe-init-build-env
+poky_local_s:
+	@more $(GPOKY_LOCAL_CONF)
+poky_local_e:
+	@nano $(GPOKY_LOCAL_CONF)
+poky_layer_s:
+	@more $(GPOKY_LAYER_CONF)
+poky_layer_e:
+	@nano $(GPOKY_LAYER_CONF)
 #================================================
 # xilinx
 xilinx_install:
