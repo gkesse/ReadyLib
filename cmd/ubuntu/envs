@@ -7,6 +7,36 @@ export "GPROJECT_PATH=$GPROJECT_ROOT/ReadyLib"
 export "GRLIB_ROOT=$GPROJECT_ROOT/ReadyOpt"
 if ! [ -d $GRLIB_ROOT ] ; then mkdir -p $GRLIB_ROOT ; fi
 #================================================
+# crosstool
+export "GCROSSTOOL_ROOT=$GRLIB_ROOT/crosstool"
+export "GCROSSTOOL_ARCHIVE=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0.tar.xz"
+export "GCROSSTOOL_NAME=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0"
+export "GCROSSTOOL_DOCKERFILE=$GCROSSTOOL_NAME/testing/docker/ubuntu16.04/dockerfile"
+export "GCROSSTOOL_COMPILER=i686-ubuntu16.04-linux-gnu"
+export "GCROSSTOOL_COMPILER=armv8-rpi3-linux-gnueabihf"
+export "GCROSSTOOL_COMPILER=arm-cortex_a8-linux-gnueabi"
+export "GCROSSTOOL_BIN=arm-cortex_a8-linux-gnueabihf"
+export "GCROSSTOOL_GCC=/$HOME/x-tools/$GCROSSTOOL_BIN/bin/${GCROSSTOOL_BIN}-gcc"
+export "GCROSSTOOL_URL=http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.24.0.tar.xz"
+#================================================
+# poky
+export "GPOKY_ROOT=$GRLIB_ROOT/poky"
+export "GPOKY_NAME=$GPOKY_ROOT/poky"
+export "GPOKY_BRANCH=fido"
+export "GPOKY_URL=http://git.yoctoproject.org/git/poky"
+#================================================
+# xilinx
+export "GXILINX_ROOT=$GRLIB_ROOT/xilinx"
+export "GXILINX_NAME=$GXILINX_ROOT/meta-xilinx"
+export "GXILINX_BRANCH=morty"
+export "GXILINX_URL=https://github.com/Xilinx/meta-xilinx.git"
+#================================================
+# openembedded
+export "GOPENEMBEDDED_ROOT=$GRLIB_ROOT/openembedded"
+export "GOPENEMBEDDED_NAME=$GOPENEMBEDDED_ROOT/meta-openembedded"
+export "GOPENEMBEDDED_BRANCH=morty"
+export "GOPENEMBEDDED_URL=https://github.com/openembedded/meta-openembedded.git"
+#================================================
 # xenomai
 export "GXENOMAI_ROOT=$GRLIB_ROOT/xenomai"
 export "GXENOMAI_ARCHIVE=$GXENOMAI_ROOT/xenomai-2.6.5.tar.bz2"
@@ -29,18 +59,6 @@ export "GPTXDIST_SRC=$GRLIB_ROOT/ptxdist_src"
 export "GPTXDIST_ARCHIVE=$GPTXDIST_ROOT/ptxdist-2021.02.0.tar.bz2"
 export "GPTXDIST_NAME=$GPTXDIST_ROOT/ptxdist-2021.02.0"
 export "GPTXDIST_URL=https://public.pengutronix.de/software/ptxdist/ptxdist-2021.02.0.tar.bz2"
-#================================================
-# crosstool
-export "GCROSSTOOL_ROOT=$GRLIB_ROOT/crosstool"
-export "GCROSSTOOL_ARCHIVE=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0.tar.xz"
-export "GCROSSTOOL_NAME=$GCROSSTOOL_ROOT/crosstool-ng-1.24.0"
-export "GCROSSTOOL_DOCKERFILE=$GCROSSTOOL_NAME/testing/docker/ubuntu16.04/dockerfile"
-export "GCROSSTOOL_COMPILER=i686-ubuntu16.04-linux-gnu"
-export "GCROSSTOOL_COMPILER=armv8-rpi3-linux-gnueabihf"
-export "GCROSSTOOL_COMPILER=arm-cortex_a8-linux-gnueabi"
-export "GCROSSTOOL_BIN=arm-cortex_a8-linux-gnueabihf"
-export "GCROSSTOOL_GCC=/$HOME/x-tools/$GCROSSTOOL_BIN/bin/${GCROSSTOOL_BIN}-gcc"
-export "GCROSSTOOL_URL=http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.24.0.tar.xz"
 #================================================
 # git
 export "GGIT_URL=https://github.com/gkesse/ReadyLib.git"
