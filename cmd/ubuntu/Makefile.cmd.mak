@@ -23,7 +23,9 @@ pkg_install:
     bzip2 \
     xz-utils \
     dos2unix \
-    unzip 
+    unzip \
+    npm \
+    nodejs-legacy
 #================================================	
 # xenomai
 xen_all: pkg_install xen_download linux_download xen_patch xen_config
@@ -130,6 +132,22 @@ git_config:
 	@git config --list
 git_store:
 	@git config --global credential.helper store
+#================================================	
+# npm
+npm_install:
+	@sudo npm install --global \
+    xpm@latest
+npm_link:
+	@sudo ln -s /usr/bin/nodejs /usr/bin/node
+npm_upgrade:
+	@sudo npm cache clean -f
+	@sudo npm install -g n
+	@sudo n stable
+#================================================	
+# xpm
+xpm_install:
+	@sudo xpm install --global \
+    @xpack-dev-tools/qemu-arm@lastest
 #================================================	
 # unix
 unix_reboot:
