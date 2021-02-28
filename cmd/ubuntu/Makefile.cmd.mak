@@ -22,6 +22,7 @@ pkg_install:
     gperf \
     bzip2 \
     xz-utils \
+    dos2unix \
     unzip 
 #================================================	
 # xenomai
