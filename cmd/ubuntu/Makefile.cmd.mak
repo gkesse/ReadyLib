@@ -161,6 +161,13 @@ ros_key:
 	@sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 ros_install:
 	@sudo apt install ros-kinetic-desktop-full
+ros_init:
+	@sudo rosdep init
+ros_update:
+	@sudo rosdep update
+ros_setup:
+	@echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+	@. ~/.bashrc
 #================================================
 # unix
 unix_update:
