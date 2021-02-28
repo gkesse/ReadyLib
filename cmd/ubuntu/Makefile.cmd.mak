@@ -162,12 +162,23 @@ ros_key:
 ros_install:
 	@sudo apt install ros-kinetic-desktop-full
 ros_init:
-	@sudo rosdep init
+	@rosdep init
+ros_permis:
+	@sudo chmod -R 777 $(HOME)/.ros
 ros_update:
-	@sudo rosdep update
+	@rosdep update
 ros_setup:
 	@echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 	@. ~/.bashrc
+ros_dep:
+	@sudo apt install -y \
+    python-rosdep \
+    python-rosinstall \
+    python-rosinstall-generator \
+    python-wstool \
+    build-essential
+ros_core:
+	@roscore
 #================================================
 # unix
 unix_update:
