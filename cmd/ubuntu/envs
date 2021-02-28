@@ -22,7 +22,7 @@ export "GCROSSTOOL_URL=http://crosstool-ng.org/download/crosstool-ng/crosstool-n
 # poky
 export "GPOKY_ROOT=$GRLIB_ROOT/poky"
 export "GPOKY_NAME=$GPOKY_ROOT/poky"
-export "GPOKY_BRANCH=fido"
+export "GPOKY_BRANCH=morty"
 export "GPOKY_URL=http://git.yoctoproject.org/git/poky"
 #================================================
 # xilinx

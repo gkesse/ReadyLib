@@ -60,6 +60,8 @@ poky_branch_d:
 poky_branch_s:
 	@cd $(GPOKY_NAME) && git checkout $(argv)
 	@cd $(GPOKY_NAME) && git branch
+poky_init:
+	@cd $(GPOKY_NAME) && . ./oe-init-build-env
 #================================================
 # xilinx
 xilinx_install:
