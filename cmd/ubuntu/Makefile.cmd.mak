@@ -4,16 +4,25 @@ SHELL: /bin/bash
 # package
 pkg_install:
 	sudo apt -y install \
-	libncurses5-dev \
-	libncursesw5-dev \
-	flex \
-	bison \
-	libssl-dev \
-	git \
-	gawk \
-	texinfo \
-	python-docutils \
-	python-sphinx
+    libncurses5-dev \
+    libncursesw5-dev \
+    flex \
+    bison \
+    libssl-dev \
+    git \
+    gawk \
+    texinfo \
+    python-docutils \
+    python-sphinx \
+    automake \
+    autoconf \
+    help2man \
+    libtool \
+    libtool-bin \
+    gperf \
+    bzip2 \
+    xz-utils \
+    unzip 
 #================================================	
 # xenomai
 xen_all: pkg_install xen_download linux_download xen_patch xen_config
@@ -37,6 +46,27 @@ xen_compile:
 	--rootcmd fakeroot \
 	--initrd kernel_image kernel_headers
 #================================================	
+# crosstool
+crosstool_download:
+	@if ! [ -d $(GCROSSTOOL_ROOT) ] ; then mkdir -p $(GCROSSTOOL_ROOT) ; fi
+	@if ! [ -d $(GCROSSTOOL_NAME) ] ; then cd $(GCROSSTOOL_ROOT) && wget $(GCROSSTOOL_URL) ; fi
+	@if ! [ -d $(GCROSSTOOL_NAME) ] ; then cd $(GCROSSTOOL_ROOT) && tar xJfv $(GCROSSTOOL_ARCHIVE) ; fi
+	@if [ -f $(GCROSSTOOL_ARCHIVE) ] ; then cd $(GCROSSTOOL_ROOT) && rm -f $(GCROSSTOOL_ARCHIVE) ; fi
+crosstool_boot:
+	@cd $(GCROSSTOOL_NAME) && ./bootstrap
+crosstool_config:
+	@cd $(GCROSSTOOL_NAME) && ./configure --enable-local
+crosstool_make:
+	@cd $(GCROSSTOOL_NAME) && make
+crosstool_install:
+	@cd $(GCROSSTOOL_NAME) && sudo make install
+crosstool_list:
+	@cd $(GCROSSTOOL_NAME) && ./ct-ng list-samples $(argv)
+crosstool_show:
+	@cd $(GCROSSTOOL_NAME) && ./ct-ng show-$(GCROSSTOOL_COMPILER)
+crosstool_select:
+	@cd $(GCROSSTOOL_NAME) && ./ct-ng $(GCROSSTOOL_COMPILER)
+#================================================	
 # ptxdist
 ptxdist_download:
 	@if ! [ -d $(GPTXDIST_ROOT) ] ; then mkdir -p $(GPTXDIST_ROOT) ; fi
@@ -53,6 +83,8 @@ ptxdist_remove:
 	@rm -rf $(GPTXDIST_NAME)
 ptxdist_setup:
 	@ptxdist setup
+ptxdist_platform:
+	@ptxdist platformconfig
 #================================================	
 # linux_kernel
 linux_download:
