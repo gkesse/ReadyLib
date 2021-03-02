@@ -1,3 +1,4 @@
+#!/bin/bash
 #================================================
 # project
 export "GPROJECT_ROOT=/home/osboxes/Programs"
@@ -22,9 +23,11 @@ export "GCROSSTOOL_URL=http://crosstool-ng.org/download/crosstool-ng/crosstool-n
 # poky
 export "GPOKY_ROOT=$GRLIB_ROOT/poky"
 export "GPOKY_NAME=$GPOKY_ROOT/poky"
+export "GPOKY_BUILD=$GPOKY_NAME/build"
 export "GPOKY_BRANCH=morty"
 export "GPOKY_LOCAL_CONF=$GPOKY_NAME/build/conf/local.conf"
 export "GPOKY_LAYER_CONF=$GPOKY_NAME/build/conf/bblayers.conf"
+export "GPOKY_IMAGE=core-image-minimal"
 export "GPOKY_URL=http://git.yoctoproject.org/git/poky"
 #================================================
 # xilinx
@@ -41,19 +44,19 @@ export "GOPENEMBEDDED_URL=https://github.com/openembedded/meta-openembedded.git"
 #================================================
 # xenomai
 export "GXENOMAI_ROOT=$GRLIB_ROOT/xenomai"
-export "GXENOMAI_ARCHIVE=$GXENOMAI_ROOT/xenomai-2.6.5.tar.bz2"
-export "GXENOMAI_NAME=$GXENOMAI_ROOT/xenomai-2.6.5"
+export "GXENOMAI_ARCHIVE=$GXENOMAI_ROOT/xenomai-2.6.2.1.tar.bz2"
+export "GXENOMAI_NAME=$GXENOMAI_ROOT/xenomai-2.6.2.1"
 export "GXENOMAI_PREPARE=$GXENOMAI_NAME/scripts/prepare-kernel.sh"
 export "GXENOMAI_ARCH=i686"
 export "GXENOMAI_IPIPE=ksrc/arch/x86/patches/ipipe-core-3.18.20-x86-7.patch"
-export "GXENOMAI_URL=http://xenomai.org/downloads/xenomai/stable/xenomai-2.6.5.tar.bz2"
+export "GXENOMAI_URL=https://xenomai.org/downloads/xenomai/stable/xenomai-2.6.2.1.tar.bz2"
 #================================================
 # linux_kernel
 export "GLINUX_ROOT=$GRLIB_ROOT/linux"
-export "GLINUX_ARCHIVE=$GLINUX_ROOT/linux-5.9.tar.gz"
-export "GLINUX_NAME=$GLINUX_ROOT/linux-5.9"
+export "GLINUX_ARCHIVE=$GLINUX_ROOT/linux-3.5.7.tar.bz2"
+export "GLINUX_NAME=$GLINUX_ROOT/linux-3.5.7"
 export "GLINUX_CONFIG=$GLINUX_NAME/.config"
-export "GLINUX_URL=https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.9.tar.gz"
+export "GLINUX_URL=https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.5.7.tar.bz2"
 #================================================
 # ptxdist
 export "GPTXDIST_ROOT=$GRLIB_ROOT/ptxdist"
@@ -61,6 +64,15 @@ export "GPTXDIST_SRC=$GRLIB_ROOT/ptxdist_src"
 export "GPTXDIST_ARCHIVE=$GPTXDIST_ROOT/ptxdist-2021.02.0.tar.bz2"
 export "GPTXDIST_NAME=$GPTXDIST_ROOT/ptxdist-2021.02.0"
 export "GPTXDIST_URL=https://public.pengutronix.de/software/ptxdist/ptxdist-2021.02.0.tar.bz2"
+#================================================
+# raspbian
+export "GRASPBIAN_ROOT=$GRLIB_ROOT/raspbian"
+export "GRASPBIAN_ARCHIVE=$GRASPBIAN_ROOT/raspbian_lite_latest.zip"
+export "GRASPBIAN_NAME=$GRASPBIAN_ROOT/2021-01-11-raspios-buster-armhf-lite.img"
+export "GRASPBIAN_IMAGE_BS=1M"
+export "GRASPBIAN_IMAGE_IF=$GRASPBIAN_NAME"
+export "GRASPBIAN_IMAGE_OF=/dev/sda"
+export "GRASPBIAN_URL=https://raspberry-pi.fr/download/raspbian_lite_latest.zip"
 #================================================
 # git
 export "GGIT_URL=https://github.com/gkesse/ReadyLib.git"

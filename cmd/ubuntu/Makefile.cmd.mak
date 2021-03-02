@@ -70,6 +70,8 @@ poky_layer_s:
 	@more $(GPOKY_LAYER_CONF)
 poky_layer_e:
 	@nano $(GPOKY_LAYER_CONF)
+poky_build:
+	@cd $(GPOKY_NAME) && . ./oe-init-build-env && bitbake $(GPOKY_IMAGE)
 #================================================
 # xilinx
 xilinx_install:
@@ -102,23 +104,23 @@ openembedded_branch_s:
 	@cd $(GOPENEMBEDDED_NAME) && git branch
 #================================================
 # xenomai
-xen_all: pkg_install xen_download linux_download xen_patch xen_config
+xenomai_all: pkg_install xenomai_download linux_download xenomai_patch xenomai_config
 
-xen_download:
+xenomai_download:
 	@if ! [ -d $(GXENOMAI_ROOT) ] ; then mkdir -p $(GXENOMAI_ROOT) ; fi
 	@if ! [ -d $(GXENOMAI_NAME) ] ; then cd $(GXENOMAI_ROOT) && wget $(GXENOMAI_URL) ; fi
 	@if ! [ -d $(GXENOMAI_NAME) ] ; then cd $(GXENOMAI_ROOT) && tar xjfv $(GXENOMAI_ARCHIVE) ; fi
 	@if [ -f $(GXENOMAI_ARCHIVE) ] ; then cd $(GXENOMAI_ROOT) && rm -f $(GXENOMAI_ARCHIVE) ; fi
-xen_patch:
+xenomai_patch:
 	@cd $(GXENOMAI_NAME) && $(GXENOMAI_PREPARE) \
 	--linux=$(GLINUX_NAME) \
 	--arch=$(GXENOMAI_ARCH) \
 	--ipipe=$(GXENOMAI_IPIPE)
-xen_config:
+xenomai_config:
 	@cd $(GLINUX_NAME) && make menuconfig
-xen_cpuinfo:
+xenomai_cpuinfo:
 	@cd $(GLINUX_NAME) && cat /proc/cpuinfo | grep -i family
-xen_compile:
+xenomai_compile:
 	@CONCURRENCY_LEVEL=$(nproc) make-kpkg \
 	--rootcmd fakeroot \
 	--initrd kernel_image kernel_headers
@@ -142,11 +144,48 @@ ptxdist_setup:
 ptxdist_platform:
 	@ptxdist platformconfig
 #================================================
+# ros
+ros_source:
+	@./cmd/ros_source
+ros_key:
+	@sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+ros_install:
+	@sudo apt install ros-kinetic-desktop-full
+ros_init:
+	@rosdep init
+ros_permis:
+	@sudo chmod -R 777 $(HOME)/.ros
+ros_update:
+	@rosdep update
+ros_setup:
+	@echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+	@. ~/.bashrc
+ros_dep:
+	@sudo apt install -y \
+    python-rosdep \
+    python-rosinstall \
+    python-rosinstall-generator \
+    python-wstool \
+    build-essential
+ros_core:
+	@roscore
+#================================================
+# raspbian
+raspbian_download:
+	@if ! [ -d $(GRASPBIAN_ROOT) ] ; then mkdir -p $(GRASPBIAN_ROOT) ; fi
+	@if ! [ -d $(GRASPBIAN_NAME) ] ; then cd $(GRASPBIAN_ROOT) && wget $(GRASPBIAN_URL) ; fi
+	@if ! [ -d $(GRASPBIAN_NAME) ] ; then cd $(GRASPBIAN_ROOT) && unzip $(GRASPBIAN_ARCHIVE) ; fi
+	@if [ -f $(GRASPBIAN_ARCHIVE) ] ; then cd $(GRASPBIAN_ROOT) && rm -f $(GRASPBIAN_ARCHIVE) ; fi
+raspbian_device:
+	@df -h
+raspbian_image:
+	@sudo dd bs=1M if=RPi_image_file.img of=/dev/XXX
+#================================================
 # linux_kernel
 linux_download:
 	@if ! [ -d $(GLINUX_ROOT) ] ; then mkdir -p $(GLINUX_ROOT) ; fi
 	@if ! [ -d $(GLINUX_NAME) ] ; then cd $(GLINUX_ROOT) && wget $(GLINUX_URL) ; fi
-	@if ! [ -d $(GLINUX_NAME) ] ; then cd $(GLINUX_ROOT) && tar xzfv $(GLINUX_ARCHIVE) ; fi
+	@if ! [ -d $(GLINUX_NAME) ] ; then cd $(GLINUX_ROOT) && tar xjfv $(GLINUX_ARCHIVE) ; fi
 	@if [ -f $(GLINUX_ARCHIVE) ] ; then cd $(GLINUX_ROOT) && rm -f $(GLINUX_ARCHIVE) ; fi
 linux_config:
 	@cd $(GLINUX_NAME) && make menuconfig
@@ -182,32 +221,6 @@ xpm_install:
 	@sudo xpm install --global \
     xpack-dev-tools/qemu-arm@2.8.0-8.1
 #================================================
-# ros
-ros_source:
-	@./cmd/ros_source
-ros_key:
-	@sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-ros_install:
-	@sudo apt install ros-kinetic-desktop-full
-ros_init:
-	@rosdep init
-ros_permis:
-	@sudo chmod -R 777 $(HOME)/.ros
-ros_update:
-	@rosdep update
-ros_setup:
-	@echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-	@. ~/.bashrc
-ros_dep:
-	@sudo apt install -y \
-    python-rosdep \
-    python-rosinstall \
-    python-rosinstall-generator \
-    python-wstool \
-    build-essential
-ros_core:
-	@roscore
-#================================================
 # unix
 unix_update:
 	@sudo apt update
@@ -220,6 +233,9 @@ unix_kernel_version:
 	@uname -mr
 unix_kernel_list:
 	@cmd/unix_kernel_list
+unix_device_list:
+	@fdisk -l
+	@lsblk -p
 #================================================
 # git
 git_push:
