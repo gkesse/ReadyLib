@@ -1,5 +1,0 @@
-Name: cmocka
-Description: The cmocka unit testing library
-Version: 1.1.3
-Libs: -L/mingw32/lib -lcmocka
-Cflags: -I/mingw32/include
